@@ -7,7 +7,7 @@ const photos = [...hero.photos, ...hero.photos];
 
 <section id="showcase" class="relative py-12 md:py-20 border-y border-ink/10 overflow-hidden bg-bg-secondary">
   <div class="marquee-fade">
-    <div class="flex animate-marquee-slow gap-6 md:gap-10 w-max">
+    <div class="flex animate-marquee gap-6 md:gap-10 w-max">
       {photos.map((photo: any, idx: number) => (
         <div class="shrink-0 aspect-[3/4] w-[60vw] md:w-[30vw] lg:w-[22vw] relative overflow-hidden rounded-sm group">
           <img
