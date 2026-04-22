@@ -14,16 +14,16 @@ services:
       - web
 
   decap-oauth:
-    image: vencax/netlify-cms-github-oauth-provider
+    build:
+      context: ./docker/oauth-proxy
+      dockerfile: Dockerfile
     container_name: veta-oauth
     restart: unless-stopped
     environment:
-      # Создайте OAuth App на GitHub: https://github.com/settings/developers
-      # Authorization callback URL: https://YOUR_DOMAIN.com/callback
-      - ORIGINS=https://${DOMAIN}
       - OAUTH_CLIENT_ID=${OAUTH_CLIENT_ID}
       - OAUTH_CLIENT_SECRET=${OAUTH_CLIENT_SECRET}
-      - GIT_HOSTNAME=https://github.com
+      - ORIGIN=https://${DOMAIN}
+      - PORT=3000
     networks:
       - web
 
