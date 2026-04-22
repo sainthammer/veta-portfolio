@@ -3,15 +3,15 @@ import siteData from '@/data/site.json';
 const { hero } = siteData;
 ---
 
-<section id="top" class="relative min-h-screen flex flex-col pt-32 md:pt-40 pb-12 overflow-hidden">
+<section id="top" class="relative pt-32 md:pt-36 pb-16 md:pb-20 overflow-hidden">
   {/* Grid */}
   <div class="absolute inset-0 pointer-events-none opacity-[0.03]" aria-hidden="true">
     <div class="h-full w-full" style="background-image: linear-gradient(to right, #0A0A0A 1px, transparent 1px), linear-gradient(to bottom, #0A0A0A 1px, transparent 1px); background-size: 80px 80px;"></div>
   </div>
 
-  <div class="container-wide relative z-10 flex-1 flex flex-col">
+  <div class="container-wide relative z-10">
     {/* Top meta */}
-    <div class="flex flex-wrap items-center justify-between gap-4 mb-10 md:mb-16 reveal-up">
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-8 md:mb-12 reveal-up">
       <div class="flex items-center gap-3 text-xs text-ink-muted font-mono">
         <span class="w-2 h-2 rounded-full bg-ink animate-pulse-soft"></span>
         <span class="uppercase tracking-widest">{hero.availability}</span>
@@ -21,7 +21,7 @@ const { hero } = siteData;
       </div>
     </div>
 
-    {/* NAME — top */}
+    {/* NAME */}
     <h1 class="font-sans font-black uppercase leading-[0.82] tracking-[-0.045em]"
         style="font-size: clamp(3rem, 11vw, 12rem)">
       <span class="split-line block">
@@ -32,43 +32,38 @@ const { hero } = siteData;
       </span>
     </h1>
 
-    {/* SLOGAN BLOCK — fills remaining space */}
-    <div class="flex-1 flex flex-col justify-center py-12 md:py-16">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-end">
-        {/* Slogan label */}
-        <div class="md:col-span-12 flex items-center gap-3 reveal-up" style="transition-delay:0.3s">
-          <span class="w-8 h-px bg-ink"></span>
-          <span class="text-xs font-mono uppercase tracking-widest text-ink-muted">
-            — 00 / Philosophy
-          </span>
-        </div>
+    {/* SLOGAN BLOCK */}
+    <div class="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-end">
+      <div class="md:col-span-12 flex items-center gap-3 reveal-up" style="transition-delay:0.3s">
+        <span class="w-8 h-px bg-ink"></span>
+        <span class="text-xs font-mono uppercase tracking-widest text-ink-muted">
+          — 00 / Philosophy
+        </span>
+      </div>
 
-        {/* Giant slogan */}
-        <div class="md:col-span-8 reveal-up" style="transition-delay:0.4s">
-          <h2 class="font-sans font-black uppercase leading-[0.85] tracking-tighter"
-              style="font-size: clamp(3rem, 10vw, 10rem)">
-            Content<br/>
-            <span class="italic font-display font-light normal-case tracking-tight">that</span>
-            Performs<span class="opacity-20">.</span>
-          </h2>
-        </div>
+      <div class="md:col-span-8 reveal-up" style="transition-delay:0.4s">
+        <h2 class="font-sans font-black uppercase leading-[0.85] tracking-tighter"
+            style="font-size: clamp(3rem, 10vw, 10rem)">
+          Content<br/>
+          <span class="italic font-display font-light normal-case tracking-tight">that</span>
+          Performs<span class="opacity-20">.</span>
+        </h2>
+      </div>
 
-        {/* Intro text — small, right side */}
-        <div class="md:col-span-4 reveal-up" style="transition-delay:0.5s">
-          <div class="flex items-center gap-2 flex-wrap mb-4">
-            {hero.tagline.split('·').map((word: string) => (
-              <span class="pill text-[10px] uppercase tracking-widest">{word.trim()}</span>
-            ))}
-          </div>
-          <p class="text-sm text-ink-muted leading-relaxed">
-            {hero.intro}
-          </p>
+      <div class="md:col-span-4 reveal-up" style="transition-delay:0.5s">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          {hero.tagline.split('·').map((word: string) => (
+            <span class="pill text-[10px] uppercase tracking-widest">{word.trim()}</span>
+          ))}
         </div>
+        <p class="text-sm text-ink-muted leading-relaxed">
+          {hero.intro}
+        </p>
       </div>
     </div>
 
     {/* Scroll indicator */}
-    <div class="flex items-end justify-between gap-8">
+    <div class="mt-16 md:mt-24 flex items-end justify-between gap-8">
       <a href="#showcase" class="group inline-flex items-center gap-4 text-xs uppercase tracking-widest font-medium">
         <span class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-ink text-bg flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="group-hover:translate-y-1 transition-transform duration-500">
