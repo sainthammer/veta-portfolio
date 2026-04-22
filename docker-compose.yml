@@ -14,19 +14,16 @@ services:
       - web
 
   decap-oauth:
-    image: ghcr.io/igk1972/netlify-cms-oauth-provider-go:latest
+    image: vencax/netlify-cms-github-oauth-provider
     container_name: veta-oauth
     restart: unless-stopped
     environment:
       # Создайте OAuth App на GitHub: https://github.com/settings/developers
       # Authorization callback URL: https://YOUR_DOMAIN.com/callback
-      - HOST=0.0.0.0
-      - PORT=3000
+      - ORIGINS=https://${DOMAIN}
       - OAUTH_CLIENT_ID=${OAUTH_CLIENT_ID}
       - OAUTH_CLIENT_SECRET=${OAUTH_CLIENT_SECRET}
-      - REDIRECT_URL=https://${DOMAIN}/callback
-      - OAUTH_PROVIDER=github
-      - SCOPES=repo,user
+      - GIT_HOSTNAME=https://github.com
     networks:
       - web
 
