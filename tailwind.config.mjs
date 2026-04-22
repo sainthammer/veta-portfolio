@@ -4,22 +4,22 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Warm off-white base — looks more premium than pure white
+        // Clean white base
         bg: {
-          DEFAULT: '#F5F3EE',
-          secondary: '#E8E4DC',
-          tertiary: '#DDD7CB',
+          DEFAULT: '#FFFFFF',
+          secondary: '#F5F5F5',
+          tertiary: '#EBEBEB',
         },
         ink: {
           DEFAULT: '#0A0A0A',
-          soft: '#2A2A2A',
-          muted: '#6B6B6B',
-          faint: '#A8A49B',
+          soft: '#1A1A1A',
+          muted: '#707070',
+          faint: '#B0B0B0',
         },
         accent: {
-          DEFAULT: '#FF5B4A', // vivid coral
-          soft: '#FFE4DF',
-          dark: '#D94432',
+          DEFAULT: '#0A0A0A', // чёрный как основной акцент
+          soft: '#F0F0F0',
+          dark: '#000000',
         },
       },
       fontFamily: {

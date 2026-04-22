@@ -7,26 +7,30 @@ const [firstName, lastName] = hero.name.split(' ');
 ---
 
 <section id="top" class="relative min-h-screen flex flex-col pt-32 md:pt-40 pb-12 overflow-hidden">
-  {/* Grid */}
-  <div class="absolute inset-0 pointer-events-none opacity-[0.03]" aria-hidden="true">
+  {/* Decorative grid */}
+  <div class="absolute inset-0 pointer-events-none opacity-[0.04]" aria-hidden="true">
     <div class="h-full w-full" style="background-image: linear-gradient(to right, #0A0A0A 1px, transparent 1px), linear-gradient(to bottom, #0A0A0A 1px, transparent 1px); background-size: 80px 80px;"></div>
   </div>
 
+  {/* Floating orb accents */}
+  <div class="absolute top-[30%] left-[5%] w-60 h-60 rounded-full bg-accent/20 blur-3xl animate-float pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute bottom-[10%] right-[30%] w-80 h-80 rounded-full bg-accent-soft blur-3xl pointer-events-none" aria-hidden="true"></div>
+
   <div class="container-wide relative z-10 flex-1 flex flex-col">
-    {/* Top meta */}
+    {/* Top meta line */}
     <div class="flex flex-wrap items-center justify-between gap-4 mb-10 md:mb-16 reveal-up">
-      <div class="flex items-center gap-3 text-xs text-ink-muted font-mono">
-        <span class="w-2 h-2 rounded-full bg-ink animate-pulse-soft"></span>
+      <div class="flex items-center gap-3 text-sm text-ink-muted font-mono">
+        <span class="w-2 h-2 rounded-full bg-accent animate-pulse-soft"></span>
         <span class="uppercase tracking-widest">{hero.availability}</span>
       </div>
-      <div class="text-xs text-ink-muted font-mono uppercase tracking-widest">
+      <div class="text-sm text-ink-muted font-mono uppercase tracking-widest">
         {hero.location}
       </div>
     </div>
 
-    {/* Main grid */}
+    {/* Main grid: name (left) + photos (right) */}
     <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
-      {/* LEFT: NAME */}
+      {/* ============ LEFT: NAME ============ */}
       <div class="md:col-span-7">
         <h1 class="font-display font-light leading-[0.85] tracking-[-0.04em]">
           <span class="split-line block">
@@ -39,40 +43,42 @@ const [firstName, lastName] = hero.name.split(' ');
           </span>
         </h1>
 
-        {/* Tagline */}
+        {/* Tagline pills */}
         <div class="mt-8 md:mt-10 flex items-center gap-3 flex-wrap reveal-up" style="transition-delay: 0.35s">
           {hero.tagline.split('·').map((word: string) => (
-            <span class="pill bg-bg/50 backdrop-blur-sm text-xs uppercase tracking-widest">{word.trim()}</span>
+            <span class="pill bg-bg/50 backdrop-blur-sm">{word.trim()}</span>
           ))}
         </div>
 
-        {/* Intro */}
+        {/* Intro text */}
         <div class="mt-8 max-w-md reveal-up" style="transition-delay: 0.45s">
-          <p class="text-sm text-ink-muted leading-relaxed">
+          <p class="text-base md:text-lg text-ink-soft leading-relaxed">
             {hero.intro}
           </p>
         </div>
       </div>
 
-      {/* RIGHT: PHOTOS */}
+      {/* ============ RIGHT: PHOTOS ============ */}
       <div class="md:col-span-5 md:-mt-8 lg:-mt-12">
         <HeroPhotos photos={hero.photos} client:load />
       </div>
     </div>
 
-    {/* Scroll indicator */}
+    {/* Bottom scroll indicator */}
     <div class="relative z-10 mt-auto pt-16 md:pt-24">
       <div class="flex items-end justify-between gap-8">
-        <a href="#work" class="group inline-flex items-center gap-4 text-xs uppercase tracking-widest font-medium">
-          <span class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-ink text-bg flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+        <a href="#work" class="group inline-flex items-center gap-4 text-sm uppercase tracking-widest font-medium">
+          <span class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-ink text-bg flex items-center justify-center group-hover:bg-accent transition-colors duration-500">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="group-hover:translate-y-1 transition-transform duration-500">
               <path d="M8 2V14M8 14L3 9M8 14L13 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
           <span>Смотреть работы</span>
         </a>
+
         <div class="hidden md:block text-right text-xs font-mono text-ink-muted uppercase tracking-widest">
-          <div>Scroll ↓</div>
+          <div>Scroll</div>
+          <div class="mt-1">↓ ↓ ↓</div>
         </div>
       </div>
     </div>

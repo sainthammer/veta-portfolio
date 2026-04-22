@@ -36,6 +36,7 @@ export default {
         'marquee': 'marquee 40s linear infinite',
         'float': 'float 6s ease-in-out infinite',
         'pulse-soft': 'pulse-soft 3s ease-in-out infinite',
+        'fade-in': 'fadeIn 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
       },
       keyframes: {
         marquee: {
@@ -49,6 +50,10 @@ export default {
         'pulse-soft': {
           '0%, 100%': { opacity: '0.4' },
           '50%': { opacity: '0.8' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'scale(0.98)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
         },
       },
     },

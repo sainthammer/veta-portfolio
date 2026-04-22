@@ -1,0 +1,30 @@
+---
+import siteData from '@/data/site.json';
+---
+
+<footer class="relative bg-ink text-bg py-12 md:py-16 overflow-hidden">
+  <div class="container-wide">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+      <div>
+        <a href="#top" class="font-display text-4xl md:text-6xl italic font-light leading-none">
+          Veta<span class="text-accent">.</span>
+        </a>
+        <div class="mt-4 text-sm font-mono uppercase tracking-widest text-bg/60">
+          {siteData.footer.copyright}
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-6 md:gap-12 text-sm font-mono uppercase tracking-widest">
+        <a href="#work" class="link-underline text-bg/70 hover:text-bg">Работы</a>
+        <a href="#services" class="link-underline text-bg/70 hover:text-bg">Услуги</a>
+        <a href="#contact" class="link-underline text-bg/70 hover:text-bg">Контакты</a>
+        <a href="/admin" class="link-underline text-bg/40 hover:text-bg/80">Редактор</a>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-bg/10 flex flex-col md:flex-row justify-between gap-4 text-xs font-mono text-bg/50 uppercase tracking-widest">
+      <div>Made with care in Astro — 2025</div>
+      <div>{siteData.hero.location}</div>
+    </div>
+  </div>
+</footer>
