@@ -19,6 +19,8 @@ services:
       dockerfile: Dockerfile
     container_name: veta-oauth
     restart: unless-stopped
+    ports:
+        - "127.0.0.1:3001:3000"
     environment:
       - OAUTH_CLIENT_ID=${OAUTH_CLIENT_ID}
       - OAUTH_CLIENT_SECRET=${OAUTH_CLIENT_SECRET}

@@ -17,6 +17,7 @@ interface Props {
 
 export default function Lightbox({ work, onClose }: Props) {
   const [index, setIndex] = useState(0);
+  const [loaded, setLoaded] = useState(false);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
 
@@ -24,8 +25,13 @@ export default function Lightbox({ work, onClose }: Props) {
     setIndex(0);
   }, [work?.slug]);
 
-  const next = useCallback(() => {
+
+  useEffect(() => {
+   setLoaded(false);
+   }, [index]);
+   const next = useCallback(() => {
     if (!work) return;
+
     setIndex((i) => (i + 1) % work.images.length);
   }, [work]);
 
@@ -145,14 +151,24 @@ export default function Lightbox({ work, onClose }: Props) {
           )}
 
           {/* Image wrapper */}
-          <div className="flex-1 flex items-center justify-center p-2 md:p-4 min-w-0">
-            <img
-              key={index}
-              src={work.images[index]}
-              alt={`${work.title} — ${index + 1} из ${total}`}
-              className="max-w-full max-h-full w-auto h-auto object-contain animate-fade-in"
-            />
-          </div>
+		<div className="flex-1 flex items-center justify-center min-h-0 min-w-0 relative overflow-hidden">
+		  {/* skeleton — поверх картинки пока грузится */}
+		  {!loaded && (
+		    <div className="absolute inset-0 flex items-center justify-center">
+		      <div className="w-16 h-16 rounded-full border-2 border-ink/20 border-t-accent animate-spin" />
+		    </div>
+		  )}
+		  <img
+		    key={index}
+		    src={work.images[index]}
+		    alt={`${work.title} — ${index + 1} из ${total}`}
+		    onLoad={() => setLoaded(true)}
+		    className={`max-w-full max-h-full object-contain p-2 md:p-4 transition-opacity duration-300 ${
+		      loaded ? 'opacity-100' : 'opacity-0'
+		    }`}
+		    style={{ maxHeight: 'calc(100vh - 200px)' }}
+		  />
+		</div>
 
           {/* Next click-zone (right margin) */}
           {total > 1 && (

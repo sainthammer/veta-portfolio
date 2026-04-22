@@ -29,11 +29,13 @@ const server = http.createServer((req, res) => {
   // ── /auth — redirect to GitHub ──────────────────────────────
   if (path === '/auth') {
     const state = randomState();
+    const origin = ORIGIN.replace(/\/$/, '');
     const ghUrl =
       `https://github.com/login/oauth/authorize` +
       `?client_id=${CLIENT_ID}` +
       `&scope=${SCOPE}` +
-      `&state=${state}`;
+      `&state=${state}` +
+      `&redirect_uri=${encodeURIComponent(origin + '/callback')}`;
     res.writeHead(302, { Location: ghUrl });
     res.end();
     return;
@@ -73,7 +75,7 @@ const server = http.createServer((req, res) => {
           // Decap CMS expects this exact postMessage format
           const content = JSON.stringify({ token: json.access_token, provider: 'github' });
           const encoded = JSON.stringify(`authorization:github:success:${content}`);
-          sendHTML(res, `window.opener.postMessage(${encoded},'*');window.close();`);
+          sendHTML(res, `(function(){var m=${encoded};if(window.opener){window.opener.postMessage(m,'*');}setTimeout(function(){window.close();},800);})();`);
         } catch (e) {
           sendHTML(res, `window.opener.postMessage('authorization:github:error:parse error','*');window.close();`);
         }
