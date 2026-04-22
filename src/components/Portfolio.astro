@@ -30,12 +30,13 @@ const workItems = await Promise.all(
   <div class="container-wide">
     {/* Oversized section title */}
     <div class="mb-4 md:mb-6 reveal-up overflow-hidden">
-      <div class="flex items-end gap-6 md:gap-10">
-        <h2 class="font-sans font-black uppercase leading-none tracking-tighter whitespace-nowrap"
-            style="font-size: clamp(3.5rem, 11vw, 11rem)">
-          Selected Work
+      <div class="flex flex-col md:flex-row md:items-end gap-4 md:gap-10">
+        <h2 class="font-sans font-black uppercase leading-[0.88] tracking-tighter"
+            style="font-size: clamp(2.5rem, 11vw, 11rem)">
+          Selected<br class="md:hidden"/>
+          <span class="md:ml-0"> Work</span>
         </h2>
-        <div class="hidden md:flex flex-col gap-1 pb-3 shrink-0">
+        <div class="flex md:flex-col gap-3 md:gap-1 md:pb-3 shrink-0">
           <span class="text-xs font-mono uppercase tracking-widest text-ink-muted">2024 — 2025</span>
           <span class="text-xs font-mono uppercase tracking-widest text-ink-muted">— 01</span>
         </div>
