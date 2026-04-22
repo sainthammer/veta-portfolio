@@ -1,13 +1,13 @@
 backend:
   name: github
-  repo: YOUR_GITHUB_USER/veta-portfolio # <-- замени на свой
+  repo: sainthammer/veta-portfolio # <-- замени на свой
   branch: main
-  base_url: https://YOUR_DOMAIN.com      # <-- замени на свой домен
+  base_url: https://vetasergeeva.com      # <-- замени на свой домен
   auth_endpoint: /auth
 
 # Редирект после OAuth
-site_url: https://YOUR_DOMAIN.com
-display_url: https://YOUR_DOMAIN.com
+site_url: https://vetasergeeva.com
+display_url: https://vetasergeeva.com 
 logo_url: /favicon.svg
 
 # Локализация интерфейса
