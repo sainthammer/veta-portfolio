@@ -59,13 +59,17 @@ export default function ScatteredPortfolio({ works }: Props) {
     });
 
     items.forEach((item) => {
-      const img = item.querySelector<HTMLImageElement>('[data-cover-img]');
+      const img = item.querySelector('img');
+      const overlay = item.querySelector('[data-overlay]');
       if (!img) return;
+
       item.addEventListener('mouseenter', () => {
-        gsap.to(img, { scale: 1.06, duration: 0.8, ease: 'power3.out' });
+        gsap.to(img, { scale: 1.08, duration: 0.8, ease: 'power3.out' });
+        if (overlay) gsap.to(overlay, { opacity: 1, duration: 0.4 });
       });
       item.addEventListener('mouseleave', () => {
         gsap.to(img, { scale: 1, duration: 0.8, ease: 'power3.out' });
+        if (overlay) gsap.to(overlay, { opacity: 0, duration: 0.4 });
       });
     });
 
@@ -76,6 +80,7 @@ export default function ScatteredPortfolio({ works }: Props) {
 
   const openWork = (work: Work, e: React.MouseEvent) => {
     e.preventDefault();
+    // Combine cover + gallery into single array
     const images = [work.coverSrc, ...(work.gallerySrc || [])];
     setActiveWork({ ...work, images } as any);
   };
@@ -83,11 +88,11 @@ export default function ScatteredPortfolio({ works }: Props) {
   return (
     <>
       <div ref={containerRef} className="relative">
-        {/* Desktop scattered grid */}
+        {/* Desktop: scattered grid */}
         <div className="hidden md:grid grid-cols-12 gap-6 lg:gap-10" style={{ gridAutoRows: '60px' }}>
           {works.map((work, idx) => {
             const layout = layouts[idx % layouts.length];
-            const galleryCount = (work.gallerySrc?.length || 0) + 1;
+            const galleryCount = (work.gallerySrc?.length || 0) + 1; // +1 for cover
             return (
               <button
                 type="button"
@@ -96,58 +101,60 @@ export default function ScatteredPortfolio({ works }: Props) {
                 data-work-item
                 data-speed={layout.offset}
                 data-cursor-hover
-                className="group relative flex flex-col text-left"
+                className="group relative block overflow-hidden rounded-md text-left"
                 style={{
                   gridColumn: `${layout.col} / span ${layout.cs}`,
                   gridRow: `${layout.row} / span ${layout.rs}`,
                 }}
               >
-                {/* Image */}
-                <div className="relative flex-1 overflow-hidden rounded-md bg-ink/5 min-h-0">
+                <div className="absolute inset-0 bg-ink/5">
                   <img
                     src={work.coverSrc}
                     alt={work.title}
                     loading={idx < 2 ? 'eager' : 'lazy'}
-                    data-cover-img
-                    className="absolute inset-0 w-full h-full object-cover will-change-transform"
+                    className="w-full h-full object-cover will-change-transform"
                   />
-                  <div className="absolute top-4 left-4 flex items-center gap-2">
-                    <span className="pill bg-bg/90 backdrop-blur-sm text-[10px]">{work.category}</span>
-                  </div>
-                  {galleryCount > 1 && (
-                    <div className="absolute top-4 right-4 pill bg-ink/80 text-bg backdrop-blur-sm text-[10px]">
-                      +{galleryCount - 1}
+                </div>
+                <div
+                  data-overlay
+                  className="absolute inset-0 bg-ink/40 opacity-0 flex items-end p-6 md:p-8 pointer-events-none"
+                >
+                  <div className="text-bg">
+                    <div className="text-xs font-mono uppercase tracking-widest mb-2 text-accent">
+                      {work.category} / {work.year}
                     </div>
-                  )}
-                  <div className="absolute bottom-4 right-4 font-mono text-[10px] text-bg opacity-70">
-                    {String(work.order).padStart(2, '0')}
+                    <div className="font-display text-3xl md:text-4xl leading-none">
+                      {work.title}
+                    </div>
+                    <div className="mt-3 text-xs font-mono uppercase tracking-widest opacity-70 flex items-center gap-2">
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <rect x="1" y="2" width="10" height="8" rx="1" stroke="currentColor" strokeWidth="1" />
+                        <circle cx="6" cy="6" r="2" stroke="currentColor" strokeWidth="1" fill="none" />
+                      </svg>
+                      {galleryCount} фото — клик для просмотра
+                    </div>
                   </div>
                 </div>
-
-                {/* Always-visible caption below */}
-                <div className="mt-4 pr-2">
-                  <h3 className="font-sans font-black uppercase leading-tight tracking-tight group-hover:opacity-70 transition-opacity duration-300"
-                      style={{ fontSize: 'clamp(1rem, 1.6vw, 1.5rem)' }}>
-                    {work.title}
-                  </h3>
-                  {work.description && (
-                    <p className="mt-2 text-xs text-ink-muted leading-relaxed line-clamp-2">
-                      {work.description}
-                    </p>
-                  )}
-                  <div className="mt-2 flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-ink-faint">
-                    <span>{work.client}</span>
-                    {work.client && <span>·</span>}
-                    <span>{work.year}</span>
+                <div className="absolute top-4 left-4 flex items-center gap-2">
+                  <span className="pill bg-bg/90 backdrop-blur-sm text-xs">
+                    {work.category}
+                  </span>
+                </div>
+                {galleryCount > 1 && (
+                  <div className="absolute top-4 right-4 pill bg-ink/80 text-bg backdrop-blur-sm text-xs">
+                    +{galleryCount - 1}
                   </div>
+                )}
+                <div className="absolute bottom-4 right-4 font-mono text-xs text-bg opacity-60">
+                  {String(work.order).padStart(2, '0')}
                 </div>
               </button>
             );
           })}
         </div>
 
-        {/* Mobile stack */}
-        <div className="md:hidden flex flex-col gap-10">
+        {/* Mobile: simple stack */}
+        <div className="md:hidden flex flex-col gap-6">
           {works.map((work) => {
             const galleryCount = (work.gallerySrc?.length || 0) + 1;
             return (
@@ -155,38 +162,25 @@ export default function ScatteredPortfolio({ works }: Props) {
                 type="button"
                 onClick={(e) => openWork(work, e)}
                 key={work.slug}
-                className="group flex flex-col text-left"
+                className="group relative block overflow-hidden rounded-md aspect-[4/5] text-left"
               >
-                <div className="relative overflow-hidden rounded-md aspect-[4/5]">
-                  <img
-                    src={work.coverSrc}
-                    alt={work.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="pill bg-bg/90 text-[10px]">{work.category}</span>
-                  </div>
-                  {galleryCount > 1 && (
-                    <div className="absolute top-4 right-4 pill bg-ink/80 text-bg text-[10px]">
-                      +{galleryCount - 1}
-                    </div>
-                  )}
+                <img
+                  src={work.coverSrc}
+                  alt={work.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute top-4 left-4">
+                  <span className="pill bg-bg/90 text-xs">{work.category}</span>
                 </div>
-                <div className="mt-4">
-                  <h3 className="font-sans font-black uppercase text-xl leading-tight tracking-tight">
-                    {work.title}
-                  </h3>
-                  {work.description && (
-                    <p className="mt-2 text-xs text-ink-muted leading-relaxed line-clamp-2">
-                      {work.description}
-                    </p>
-                  )}
-                  <div className="mt-2 flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-ink-faint">
-                    <span>{work.client}</span>
-                    {work.client && <span>·</span>}
-                    <span>{work.year}</span>
+                {galleryCount > 1 && (
+                  <div className="absolute top-4 right-4 pill bg-ink/80 text-bg text-xs">
+                    +{galleryCount - 1}
                   </div>
+                )}
+                <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-ink/80 to-transparent text-bg">
+                  <div className="font-display text-2xl leading-none">{work.title}</div>
+                  <div className="text-xs mt-1 opacity-70">{work.client} — {work.year}</div>
                 </div>
               </button>
             );
@@ -194,6 +188,7 @@ export default function ScatteredPortfolio({ works }: Props) {
         </div>
       </div>
 
+      {/* Lightbox */}
       <Lightbox work={activeWork} onClose={() => setActiveWork(null)} />
     </>
   );
