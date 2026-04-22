@@ -1,0 +1,14 @@
+node_modules
+dist
+.astro
+.git
+.gitignore
+.env
+.env.local
+.env.production
+.env.example
+README.md
+.vscode
+.idea
+*.md
+!src/**/*.md

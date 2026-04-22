@@ -1,0 +1,68 @@
+---
+import siteData from '@/data/site.json';
+import MagneticButton from '@/components/MagneticButton.tsx';
+const { contact } = siteData;
+---
+
+<section id="contact" class="relative py-24 md:py-40 overflow-hidden">
+  {/* Giant background word */}
+  <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+    <span class="font-display italic text-[20vw] md:text-[14vw] leading-none text-accent/10 whitespace-nowrap">
+      Let's talk
+    </span>
+  </div>
+
+  <div class="container-wide relative z-10">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="flex items-center justify-center gap-3 mb-8 reveal-up">
+        <span class="w-8 h-px bg-ink"></span>
+        <span class="text-xs font-mono uppercase tracking-widest text-ink-muted">
+          Contact — 03
+        </span>
+        <span class="w-8 h-px bg-ink"></span>
+      </div>
+
+      <h2 class="font-display text-hero font-light leading-none reveal-up">
+        {contact.headline.split(' ').slice(0, -2).join(' ')}<br/>
+        <span class="italic">{contact.headline.split(' ').slice(-2).join(' ')}</span>
+        <span class="text-accent">.</span>
+      </h2>
+
+      <p class="mt-10 text-lg md:text-xl text-ink-soft max-w-2xl mx-auto reveal-up" style="transition-delay: 0.2s">
+        {contact.subline}
+      </p>
+
+      {/* Big email button */}
+      <div class="mt-16 flex justify-center reveal-up" style="transition-delay: 0.3s">
+        <MagneticButton
+          href={`mailto:${contact.email}`}
+          strength={0.4}
+          client:visible
+          className="group inline-flex items-center gap-4 px-8 md:px-12 py-5 md:py-6 bg-ink text-bg rounded-full hover:bg-accent transition-colors duration-500"
+        >
+          <span class="font-display text-2xl md:text-3xl italic">{contact.email}</span>
+          <span class="w-10 h-10 rounded-full bg-bg text-ink flex items-center justify-center">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 11L11 3M11 3H4M11 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </MagneticButton>
+      </div>
+
+      {/* Social links */}
+      <div class="mt-16 flex flex-wrap items-center justify-center gap-6 md:gap-10 reveal-up" style="transition-delay: 0.4s">
+        <a href={`https://t.me/${contact.telegram.replace('@','')}`} class="link-underline text-sm md:text-base font-mono uppercase tracking-widest" target="_blank" rel="noopener">
+          Telegram {contact.telegram}
+        </a>
+        <span class="w-1 h-1 rounded-full bg-ink/30"></span>
+        <a href={`https://instagram.com/${contact.instagram.replace('@','')}`} class="link-underline text-sm md:text-base font-mono uppercase tracking-widest" target="_blank" rel="noopener">
+          Instagram {contact.instagram}
+        </a>
+        <span class="w-1 h-1 rounded-full bg-ink/30"></span>
+        <a href={`https://tiktok.com/${contact.tiktok}`} class="link-underline text-sm md:text-base font-mono uppercase tracking-widest" target="_blank" rel="noopener">
+          TikTok {contact.tiktok}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

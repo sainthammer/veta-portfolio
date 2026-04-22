@@ -1,0 +1,35 @@
+services:
+  site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: veta-site
+    restart: unless-stopped
+    ports:
+      # Слушаем только на localhost — снаружи будет nginx хоста с SSL
+      - "127.0.0.1:8080:80"
+    depends_on:
+      - decap-oauth
+    networks:
+      - web
+
+  decap-oauth:
+    image: ghcr.io/igk1972/netlify-cms-oauth-provider-go:latest
+    container_name: veta-oauth
+    restart: unless-stopped
+    environment:
+      # Создайте OAuth App на GitHub: https://github.com/settings/developers
+      # Authorization callback URL: https://YOUR_DOMAIN.com/callback
+      - HOST=0.0.0.0
+      - PORT=3000
+      - OAUTH_CLIENT_ID=${OAUTH_CLIENT_ID}
+      - OAUTH_CLIENT_SECRET=${OAUTH_CLIENT_SECRET}
+      - REDIRECT_URL=https://${DOMAIN}/callback
+      - OAUTH_PROVIDER=github
+      - SCOPES=repo,user
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge

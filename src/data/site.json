@@ -1,0 +1,62 @@
+{
+  "hero": {
+    "name": "Veta Sergeeva",
+    "tagline": "Stories · Reels · SMM",
+    "intro": "Создаю контент, который смотрят до конца и пересылают друзьям. Превращаю бренды в любимчиков аудитории.",
+    "availability": "Доступна для проектов — Q3 2025",
+    "location": "Remote · Everywhere",
+    "photos": [
+      { "src": "/images/hero-1.jpg", "alt": "Veta Sergeeva — портрет", "caption": "В работе — 2025" },
+      { "src": "/images/hero-2.jpg", "alt": "Съёмка Reels", "caption": "Reels production · Zurich" },
+      { "src": "/images/hero-3.jpg", "alt": "За монтажом", "caption": "Editing workflow" }
+    ]
+  },
+  "about": {
+    "headline": "Контент, который работает",
+    "body": "Пять лет делаю Stories и Reels для малого бизнеса, локальных брендов и экспертов. Знаю, как алгоритмы Instagram и TikTok любят ваш контент.",
+    "photo": "/images/veta-portrait.jpg",
+    "photoCaption": "Veta Sergeeva — SMM-специалист, Цуг",
+    "highlights": [
+      "5+ лет в SMM",
+      "Работала с брендами в EU и СНГ",
+      "Snezhana-certified content strategist",
+      "Преподаю в онлайн-школе контент-мейкеров"
+    ],
+    "stats": [
+      { "value": "120+", "label": "Проектов" },
+      { "value": "5M+", "label": "Охвата" },
+      { "value": "48", "label": "Клиентов" }
+    ]
+  },
+  "services": [
+    {
+      "number": "01",
+      "title": "Reels Production",
+      "description": "Сценарий, съёмка, монтаж. Вертикальное видео, которое попадает в рекомендации и конвертит в подписчиков.",
+      "bullets": ["Сценарии и идеи", "Съёмка на телефон/камеру", "Монтаж + саунд-дизайн", "Публикация и хэштеги"]
+    },
+    {
+      "number": "02",
+      "title": "Stories Design",
+      "description": "Ежедневные сторис, которые не хочется пролистывать. Минималистичная эстетика, которая продаёт.",
+      "bullets": ["Шаблоны в едином стиле", "Прогревы и воронки", "Интерактив и опросы", "Highlights-обложки"]
+    },
+    {
+      "number": "03",
+      "title": "SMM-менеджмент",
+      "description": "Веду соцсети под ключ: стратегия, контент-план, ответы подписчикам, аналитика и рост.",
+      "bullets": ["Контент-план на месяц", "Коммьюнити-менеджмент", "Аналитика и отчёты", "Платное продвижение"]
+    }
+  ],
+  "contact": {
+    "headline": "Давайте создадим что-то классное",
+    "subline": "Напишите мне в Telegram или на почту — отвечаю в течение дня",
+    "email": "hello@vetasergeeva.com",
+    "telegram": "@vetasergeeva",
+    "instagram": "@veta.sergeeva",
+    "tiktok": "@vetasergeeva"
+  },
+  "footer": {
+    "copyright": "© 2025 Veta Sergeeva"
+  }
+}

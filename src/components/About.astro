@@ -1,0 +1,92 @@
+---
+import siteData from '@/data/site.json';
+const { about } = siteData;
+---
+
+<section id="about" class="relative py-24 md:py-40 overflow-hidden">
+  {/* Decorative accent */}
+  <div class="absolute top-40 -right-20 w-80 h-80 rounded-full bg-accent/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+  <div class="container-wide">
+    {/* Section label */}
+    <div class="flex items-center gap-3 mb-12 md:mb-20 reveal-up">
+      <span class="w-8 h-px bg-ink"></span>
+      <span class="text-xs font-mono uppercase tracking-widest text-ink-muted">
+        About — Коротко о главном
+      </span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start">
+      {/* ============ LEFT: PHOTO ============ */}
+      <div class="md:col-span-5 md:sticky md:top-32 reveal-up">
+        <div class="relative group">
+          {/* Offset accent card behind photo */}
+          <div class="absolute -inset-3 md:-inset-4 bg-accent rounded-sm rotate-[-2deg] group-hover:rotate-[-3deg] transition-transform duration-700 ease-out"></div>
+
+          <div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-bg-secondary">
+            <img
+              src={about.photo}
+              alt={about.photoCaption}
+              loading="lazy"
+              class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
+            />
+            {/* Subtle warm overlay */}
+            <div class="absolute inset-0 bg-gradient-to-t from-ink/10 to-transparent pointer-events-none"></div>
+          </div>
+
+          {/* Caption */}
+          <div class="mt-6 flex items-center gap-3">
+            <span class="w-6 h-px bg-ink/40"></span>
+            <span class="text-xs font-mono uppercase tracking-widest text-ink-muted">
+              {about.photoCaption}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* ============ RIGHT: TEXT + STATS ============ */}
+      <div class="md:col-span-7 md:pl-8">
+        <h2 class="font-display text-display font-light leading-none reveal-up">
+          {about.headline}<span class="text-accent">.</span>
+        </h2>
+
+        <p class="mt-8 text-lg md:text-xl text-ink-soft leading-relaxed max-w-xl reveal-up" style="transition-delay: 0.1s">
+          {about.body}
+        </p>
+
+        {/* Highlights list */}
+        {about.highlights && about.highlights.length > 0 && (
+          <ul class="mt-10 space-y-0 reveal-up" style="transition-delay: 0.2s">
+            {about.highlights.map((h: string, idx: number) => (
+              <li class="flex items-start gap-4 py-4 border-b border-ink/10 group">
+                <span class="font-mono text-xs text-ink-muted pt-1 w-8 shrink-0">
+                  {String(idx + 1).padStart(2, '0')}
+                </span>
+                <span class="text-base md:text-lg text-ink-soft group-hover:text-ink transition-colors duration-300">
+                  {h}
+                </span>
+                <span class="ml-auto text-accent opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-500">
+                  →
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {/* Stats grid */}
+        <div class="mt-14 grid grid-cols-3 gap-4 md:gap-8 pt-10 border-t border-ink/10 reveal-up" style="transition-delay: 0.3s">
+          {about.stats.map((stat: any) => (
+            <div class="group">
+              <div class="font-display text-4xl md:text-6xl font-light leading-none text-ink group-hover:text-accent transition-colors duration-500">
+                {stat.value}
+              </div>
+              <div class="mt-2 text-xs md:text-sm font-mono uppercase tracking-widest text-ink-muted">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

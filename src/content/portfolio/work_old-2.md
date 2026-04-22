@@ -1,0 +1,13 @@
+---
+title: "Beauty Brand Stories"
+client: "Lumière Cosmetics"
+category: "Stories"
+year: 2025
+cover: "../../assets/portfolio/work-2.jpg"
+description: "Ежедневные сторис для бьюти-бренда. CTR на товар вырос с 1.2% до 4.8%."
+tags: ["Stories", "Beauty", "E-commerce"]
+featured: true
+order: 2
+---
+
+Разработали единую сетку сторис: пастельная палитра, ручные надписи, интерактивные опросы. Аудитория стала в 4 раза активнее реагировать на анонсы новых продуктов.
