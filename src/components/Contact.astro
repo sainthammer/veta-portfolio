@@ -5,54 +5,51 @@ const { contact } = siteData;
 ---
 
 <section id="contact" class="relative py-24 md:py-40 overflow-hidden">
-  <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
-    <span class="font-sans font-black uppercase text-[20vw] md:text-[14vw] leading-none text-ink/5 whitespace-nowrap tracking-tighter">
-      Let's talk
-    </span>
-  </div>
-
   <div class="container-wide relative z-10">
-    <div class="max-w-5xl mx-auto text-center">
-      <div class="flex items-center justify-center gap-3 mb-8 reveal-up">
-        <span class="w-8 h-px bg-ink"></span>
-        <span class="text-xs font-mono uppercase tracking-widest text-ink-muted">Contact — 03</span>
-        <span class="w-8 h-px bg-ink"></span>
-      </div>
 
-      <h2 class="font-sans font-black uppercase tracking-tight text-hero leading-none reveal-up">
-        {contact.headline}
+    {/* Oversized title */}
+    <div class="mb-4 md:mb-6 reveal-up overflow-hidden">
+      <h2 class="font-sans font-black uppercase leading-none tracking-tighter"
+          style="font-size: clamp(3.5rem, 11vw, 11rem)">
+        Contact
       </h2>
+    </div>
 
-      <p class="mt-8 text-sm text-ink-muted max-w-md mx-auto reveal-up uppercase tracking-widest" style="transition-delay: 0.2s">
-        {contact.subline}
-      </p>
+    <p class="text-xs font-mono uppercase tracking-widest text-ink-muted mb-16 md:mb-24 reveal-up max-w-xs" style="transition-delay:0.1s">
+      — 03 / {contact.subline}
+    </p>
 
-      <div class="mt-16 flex justify-center reveal-up" style="transition-delay: 0.3s">
-        <MagneticButton
-          href={`mailto:${contact.email}`}
-          strength={0.4}
-          client:visible
-          className="group inline-flex items-center gap-4 px-8 md:px-12 py-5 md:py-6 bg-ink text-bg rounded-full hover:bg-ink/80 transition-colors duration-500"
-        >
-          <span class="font-display text-2xl md:text-3xl italic">{contact.email}</span>
-          <span class="w-10 h-10 rounded-full bg-bg text-ink flex items-center justify-center">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M3 11L11 3M11 3H4M11 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </span>
-        </MagneticButton>
-      </div>
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-12">
+      {/* Big email */}
+      <MagneticButton
+        href={`mailto:${contact.email}`}
+        strength={0.3}
+        client:visible
+        className="group inline-flex items-center gap-4"
+      >
+        <span class="font-display italic leading-none tracking-tight hover:opacity-60 transition-opacity duration-500"
+              style="font-size: clamp(1.5rem, 4vw, 3.5rem)">
+          {contact.email}
+        </span>
+        <span class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-ink text-bg flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shrink-0">
+          <svg width="16" height="16" viewBox="0 0 14 14" fill="none">
+            <path d="M3 11L11 3M11 3H4M11 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </MagneticButton>
 
-      <div class="mt-16 flex flex-wrap items-center justify-center gap-6 md:gap-10 reveal-up" style="transition-delay: 0.4s">
-        <a href={`https://t.me/${contact.telegram.replace('@','')}`} class="link-underline text-xs font-mono uppercase tracking-widest text-ink-muted hover:text-ink" target="_blank" rel="noopener">
+      {/* Socials */}
+      <div class="flex flex-col gap-3 shrink-0">
+        <a href={`https://t.me/${contact.telegram.replace('@','')}`} target="_blank" rel="noopener"
+           class="link-underline text-xs font-mono uppercase tracking-widest text-ink-muted hover:text-ink transition-colors">
           Telegram {contact.telegram}
         </a>
-        <span class="w-1 h-1 rounded-full bg-ink/30"></span>
-        <a href={`https://instagram.com/${contact.instagram.replace('@','')}`} class="link-underline text-xs font-mono uppercase tracking-widest text-ink-muted hover:text-ink" target="_blank" rel="noopener">
+        <a href={`https://instagram.com/${contact.instagram.replace('@','')}`} target="_blank" rel="noopener"
+           class="link-underline text-xs font-mono uppercase tracking-widest text-ink-muted hover:text-ink transition-colors">
           Instagram {contact.instagram}
         </a>
-        <span class="w-1 h-1 rounded-full bg-ink/30"></span>
-        <a href={`https://tiktok.com/${contact.tiktok}`} class="link-underline text-xs font-mono uppercase tracking-widest text-ink-muted hover:text-ink" target="_blank" rel="noopener">
+        <a href={`https://tiktok.com/${contact.tiktok}`} target="_blank" rel="noopener"
+           class="link-underline text-xs font-mono uppercase tracking-widest text-ink-muted hover:text-ink transition-colors">
           TikTok {contact.tiktok}
         </a>
       </div>
