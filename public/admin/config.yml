@@ -2,12 +2,12 @@ backend:
   name: github
   repo: sainthammer/veta-portfolio # <-- замени на свой
   branch: main
-  base_url: https://vetasergeeva.com      # <-- замени на свой домен
+  base_url: https://vetasergeeva.ru    # <-- замени на свой домен
   auth_endpoint: /auth
 
 # Редирект после OAuth
-site_url: https://vetasergeeva.com
-display_url: https://vetasergeeva.com 
+site_url: https://vetasergeeva.ru
+display_url: https://vetasergeeva.ru
 logo_url: /favicon.svg
 
 # Локализация интерфейса
