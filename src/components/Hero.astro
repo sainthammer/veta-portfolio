@@ -13,24 +13,10 @@ const { hero } = siteData;
     {/* Top meta */}
     <div class="flex flex-wrap items-center justify-between gap-4 mb-8 md:mb-12 reveal-up">
       <div class="flex items-center gap-3 text-xs text-ink-muted font-mono">
-        <span class="w-2 h-2 rounded-full bg-ink animate-pulse-soft"></span>
-        <span class="uppercase tracking-widest">{hero.availability}</span>
-      </div>
-      <div class="text-xs text-ink-muted font-mono uppercase tracking-widest">
-        {hero.location}
       </div>
     </div>
 
     {/* NAME */}
-    <h1 class="font-sans font-black uppercase leading-[0.82] tracking-[-0.045em]"
-        style="font-size: clamp(3rem, 11vw, 12rem)">
-      <span class="split-line block">
-        <span class="split-line-inner">Veta</span>
-      </span>
-      <span class="split-line block">
-        <span class="split-line-inner" style="transition-delay: 0.15s">Sergeeva<span class="opacity-20">.</span></span>
-      </span>
-    </h1>
 
     {/* SLOGAN BLOCK */}
     <div class="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-end">
@@ -72,9 +58,6 @@ const { hero } = siteData;
         </span>
         <span>Листать</span>
       </a>
-      <div class="hidden md:block text-right text-xs font-mono text-ink-muted uppercase tracking-widest">
-        <div>Scroll ↓</div>
-      </div>
     </div>
   </div>
 </section>
