@@ -66,17 +66,19 @@ collections:
       - { label: "Полное описание (Markdown)", name: "body", widget: "markdown", required: false }
 
   # ========== НАСТРОЙКИ САЙТА ==========
+  # Все секции — один файл, одна запись. Иначе GitHub API выдаёт
+  # "Paths must be unique across additions and deletions".
   - name: "settings"
     label: "Настройки сайта"
     files:
-
-      # ---------- HERO ----------
-      - label: "Главный экран (Hero)"
-        name: "hero"
+      - label: "Настройки сайта"
+        name: "site"
         file: "src/data/site.json"
         format: "json"
         fields:
-          - label: "Hero"
+
+          # ---------- HERO ----------
+          - label: "Hero — главный экран"
             name: "hero"
             widget: "object"
             fields:
@@ -97,19 +99,15 @@ collections:
               - label: "Фото для бегущей строки (Showcase)"
                 name: "showcasePhotos"
                 widget: "list"
-                hint: "Любое количество фото. Вертикальные 3:4 или 4:5. Если список пустой — используются фото из Hero."
+                required: false
+                hint: "Любое количество фото. Если список пустой — используются фото из Hero."
                 fields:
                   - { label: "Фото", name: "src", widget: "image", media_folder: "/public/images", public_folder: "/images" }
                   - { label: "Alt-текст", name: "alt", widget: "string" }
                   - { label: "Подпись", name: "caption", widget: "string", required: false }
 
-      # ---------- ABOUT ----------
-      - label: "О себе (About)"
-        name: "about"
-        file: "src/data/site.json"
-        format: "json"
-        fields:
-          - label: "About"
+          # ---------- ABOUT ----------
+          - label: "About — о себе"
             name: "about"
             widget: "object"
             fields:
@@ -130,13 +128,8 @@ collections:
                   - { label: "Значение", name: "value", widget: "string" }
                   - { label: "Подпись", name: "label", widget: "string" }
 
-      # ---------- SERVICES ----------
-      - label: "Услуги (Services)"
-        name: "services_settings"
-        file: "src/data/site.json"
-        format: "json"
-        fields:
-          - label: "Services"
+          # ---------- SERVICES ----------
+          - label: "Services — услуги"
             name: "services"
             widget: "list"
             fields:
@@ -148,13 +141,8 @@ collections:
                 widget: "list"
                 field: { label: "Пункт", name: "item", widget: "string" }
 
-      # ---------- CONTACT ----------
-      - label: "Контакты (Contact)"
-        name: "contact_settings"
-        file: "src/data/site.json"
-        format: "json"
-        fields:
-          - label: "Contact"
+          # ---------- CONTACT ----------
+          - label: "Contact — контакты"
             name: "contact"
             widget: "object"
             fields:
@@ -165,12 +153,7 @@ collections:
               - { label: "Instagram", name: "instagram", widget: "string", hint: "Начиная с @" }
               - { label: "TikTok", name: "tiktok", widget: "string", hint: "Начиная с @" }
 
-      # ---------- FOOTER ----------
-      - label: "Футер"
-        name: "footer_settings"
-        file: "src/data/site.json"
-        format: "json"
-        fields:
+          # ---------- FOOTER ----------
           - label: "Footer"
             name: "footer"
             widget: "object"
