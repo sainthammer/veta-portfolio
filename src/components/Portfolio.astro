@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import { getImage } from 'astro:assets';
 import ScatteredPortfolio from '@/components/ScatteredPortfolio.tsx';
+import Marquee from '@/components/Marquee.astro';
 
 const works = await getCollection('portfolio');
 works.sort((a, b) => a.data.order - b.data.order);
@@ -24,10 +25,6 @@ const workItems = await Promise.all(
     };
   })
 );
-
-// Бегущая строка — слова дублируются для бесшовной петли
-const marqueeWords = ['Selected Work', 'Stories', 'Reels', 'SMM', 'Content', 'Branding', '2024–2025'];
-const marqueeItems = [...marqueeWords, ...marqueeWords, ...marqueeWords];
 ---
 
 <section id="work" class="relative py-24 md:py-40">
@@ -47,24 +44,14 @@ const marqueeItems = [...marqueeWords, ...marqueeWords, ...marqueeWords];
         </div>
       </div>
     </div>
+  </div>
 
-    {/* Бегущая строка — под заголовком, над сеткой */}
-    <div class="works-marquee-wrap relative -mx-6 md:-mx-12 lg:-mx-16 border-y border-ink/10 overflow-hidden my-10 md:my-14">
-      <div class="works-marquee flex whitespace-nowrap py-3 md:py-4">
-        {marqueeItems.map((word, i) => (
-          <div class="flex items-center gap-5 md:gap-8 px-5 md:px-8 shrink-0">
-            {i % marqueeWords.length === 0
-              ? <span class="font-display italic text-2xl md:text-4xl text-ink">{word}</span>
-              : <span class="font-mono text-xs uppercase tracking-widest text-ink-muted">{word}</span>
-            }
-            <span class="w-1.5 h-1.5 rounded-full bg-ink/30 shrink-0"></span>
-          </div>
-        ))}
-      </div>
-    </div>
+  {/* Бегущая строка — на всю ширину, между заголовком и сеткой */}
+  <Marquee />
 
+  <div class="container-wide">
     {/* Subtext */}
-    <p class="text-xs font-mono uppercase tracking-widest text-ink-muted mb-16 md:mb-24 reveal-up max-w-xs" style="transition-delay:0.1s">
+    <p class="text-xs font-mono uppercase tracking-widest text-ink-muted mt-10 mb-16 md:mb-24 reveal-up max-w-xs" style="transition-delay:0.1s">
       Небольшая выборка последних работ. Полное портфолио — по запросу.
     </p>
 
@@ -82,35 +69,3 @@ const marqueeItems = [...marqueeWords, ...marqueeWords, ...marqueeWords];
     </div>
   </div>
 </section>
-
-<style>
-  /* Works-секция: бегущая строка */
-  .works-marquee {
-    animation: works-marquee-scroll 20s linear infinite;
-    width: max-content;
-  }
-
-  /* Медленнее на десктопе, быстрее на мобильном через медиа-запрос */
-  @media (max-width: 767px) {
-    .works-marquee {
-      animation-duration: 14s;
-    }
-  }
-
-  /* Принудительно аппаратное ускорение */
-  .works-marquee {
-    will-change: transform;
-    transform: translateZ(0);
-  }
-
-  @keyframes works-marquee-scroll {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-33.333%); }
-  }
-
-  /* Фейд по краям */
-  .works-marquee-wrap {
-    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  }
-</style>
