@@ -105,17 +105,17 @@ collections:
               - { label: "Имя", name: "name", widget: "string" }
               - { label: "Слоган (через · )", name: "tagline", widget: "string", hint: "Разделяйте элементы символом ·, например: Stories · Reels · SMM" }
               - { label: "Введение", name: "intro", widget: "text" }
-              - { label: "Статус доступности", name: "availability", widget: "string", hint: "Напр.: Доступна для проектов — Q3 2025" }
-              - { label: "Локация", name: "location", widget: "string" }
-              - label: "Фото в Hero (ровно 3)"
-                name: "photos"
-                widget: "list"
-                max: 3
-                hint: "Вертикальные фото 3:4 или 4:5, от 900×1200 px. Ровно 3 штуки — под них сверстан макет."
-                fields:
-                  - { label: "Фото", name: "src", widget: "image", media_folder: "/public/images", public_folder: "/images" }
-                  - { label: "Alt-текст", name: "alt", widget: "string" }
-                  - { label: "Подпись (при наведении)", name: "caption", widget: "string", required: false }
+#              - { label: "Статус доступности", name: "availability", widget: "string", hint: "Напр.: Доступна для проектов — Q3 2025" }
+#              - { label: "Локация", name: "location", widget: "string" }
+#              - label: "Фото в Hero (ровно 3)"
+#                name: "photos"
+#                widget: "list"
+#                max: 3
+#                hint: "Вертикальные фото 3:4 или 4:5, от 900×1200 px. Ровно 3 штуки — под них сверстан макет."
+#                fields:
+#                  - { label: "Фото", name: "src", widget: "image", media_folder: "/public/images", public_folder: "/images" }
+#                  - { label: "Alt-текст", name: "alt", widget: "string" }
+#                  - { label: "Подпись (при наведении)", name: "caption", widget: "string", required: false }
               - label: "Фото для бегущей строки (Showcase)"
                 name: "showcasePhotos"
                 widget: "list"
