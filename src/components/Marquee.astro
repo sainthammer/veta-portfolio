@@ -1,13 +1,26 @@
 ---
-const words = ['Reels', 'Stories', 'SMM', 'Content', 'Strategy', 'Viral', 'Instagram', 'TikTok'];
-// Тройное дублирование — смотрится плавнее на любой ширине экрана
+interface Props {
+  words?: string[];
+  duration?: number;
+  durationMobile?: number;
+}
+
+const {
+  words = ['Reels', 'Stories', 'SMM', 'Content', 'Strategy', 'Viral', 'Instagram', 'TikTok'],
+  duration = 25,
+  durationMobile = 8,
+} = Astro.props;
+
 const items = [...words, ...words, ...words];
 ---
 
 <section class="py-12 md:py-20 border-y border-ink/10 overflow-hidden">
   <div class="marquee-fade">
-    <div class="marquee-track flex whitespace-nowrap">
-      {items.map((word, i) => (
+    <div
+      class="marquee-track flex whitespace-nowrap"
+      style={`--dur:${duration}s; --dur-mob:${durationMobile}s`}
+    >
+      {items.map((word) => (
         <div class="flex items-center gap-8 md:gap-16 px-4 md:px-8 shrink-0">
           <span class="font-display italic text-5xl md:text-8xl text-ink">{word}</span>
           <span class="w-3 h-3 md:w-4 md:h-4 rounded-full bg-accent shrink-0"></span>
@@ -19,16 +32,14 @@ const items = [...words, ...words, ...words];
 
 <style>
   .marquee-track {
-    /* translate3d вместо translateX — включает GPU-ускорение */
     will-change: transform;
     transform: translateZ(0);
-    /* Десктоп: 25s (умеренно), мобайл: 14s (шустрее) */
-    animation: marquee-scroll 25s linear infinite;
+    animation: marquee-scroll var(--dur, 25s) linear infinite;
   }
 
   @media (max-width: 767px) {
     .marquee-track {
-      animation-duration: 14s;
+      animation-duration: var(--dur-mob, 8s);
     }
   }
 
@@ -37,3 +48,15 @@ const items = [...words, ...words, ...words];
     100% { transform: translate3d(-33.333%, 0, 0); }
   }
 </style>
+
+<script>
+  // Пересчитываем duration исходя из реальной ширины трека
+  // Целевая скорость: ~180px/s десктоп, ~120px/s мобайл
+  document.querySelectorAll<HTMLElement>('.marquee-track').forEach((track) => {
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+    const trackWidth = track.scrollWidth / 3; // одна треть — одна копия
+    const speed = isMobile ? 120 : 180; // px/s
+    const dur = trackWidth / speed;
+    track.style.setProperty(isMobile ? '--dur-mob' : '--dur', `${dur}s`);
+  });
+</script>
