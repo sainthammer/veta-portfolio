@@ -43,11 +43,8 @@ function renderMarkdown(md: string): string {
     // ul
     .replace(/^[-*] (.+)$/gm, '<li>$1</li>')
     .replace(/(<li>[\s\S]*?<\/li>)(\n(?!<li>)|$)/g, '<ul class="cms-ul">$1</ul>')
-    // paragraphs — всё что не тег
-    .replace(/^(?!<[a-z])(.+)$/gm, '<p class="cms-p">$1</p>')
-    // cleanup double-wrapping
-    .replace(/<p class="cms-p">(<(?:h[23]|ul|div|hr))/g, '$1')
-    .replace(/<\/(?:h[23]|ul|div|hr)>)<\/p>/g, '</$1>');
+    // параграфы — всё что не тег
+    .replace(/^(?!<[a-z])(.+)$/gm, '<p class="cms-p">$1</p>');
 }
 
 export default function Lightbox({ work, onClose }: Props) {
