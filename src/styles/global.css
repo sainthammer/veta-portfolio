@@ -158,24 +158,38 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   background: #0A0A0A;
   border-radius: 50%;
   pointer-events: none;
   z-index: 10001;
   transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease, background 0.3s ease, border 0.3s ease;
-  mix-blend-mode: difference;
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              background 0.35s ease,
+              border 0.35s ease,
+              box-shadow 0.35s ease;
+  box-shadow: 0 0 0 1px #ffffff;
 }
 
 .cursor.hover {
-  width: 48px;
-  height: 48px;
-  background: #FFFFFF;
-  border: 2px solid #0A0A0A;
-  box-shadow: 0 0 0 1px #FFFFFF;
-  mix-blend-mode: normal;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid #0A0A0A;
+  box-shadow: 0 0 0 1px #ffffff;
+}
+
+.cursor.dark {
+  background: #ffffff;
+  box-shadow: 0 0 0 1px #0A0A0A;
+}
+
+.cursor.hover.dark {
+  background: transparent;
+  border: 1px solid #ffffff;
+  box-shadow: 0 0 0 1px #0A0A0A;
 }
 
 .cursor-follower {
@@ -184,12 +198,12 @@
   left: 0;
   width: 40px;
   height: 40px;
-  border: 1px solid #0A0A0A;
+  border: 0.5px solid #0A0A0A;
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
   transform: translate(-50%, -50%);
-  opacity: 0.3;
+  opacity: 0.15;
   transition: opacity 0.3s ease;
 }
 

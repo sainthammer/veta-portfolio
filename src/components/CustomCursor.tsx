@@ -15,18 +15,39 @@ export default function CustomCursor() {
     let mouseY = 0;
     let followerX = 0;
     let followerY = 0;
+    let rafId: number;
+
+    // Определяем яркость фона под курсором
+    const checkDarkBackground = () => {
+      const el = document.elementFromPoint(mouseX, mouseY) as HTMLElement | null;
+      if (!el) return;
+      const bg = getComputedStyle(el).backgroundColor;
+      const match = bg.match(/\d+/g);
+      if (!match) return;
+      const [r, g, b] = match.map(Number);
+      // Яркость по формуле luminance
+      const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+      if (luminance < 0.4) {
+        cursor.classList.add('dark');
+        follower.style.borderColor = '#ffffff';
+      } else {
+        cursor.classList.remove('dark');
+        follower.style.borderColor = '#0A0A0A';
+      }
+    };
 
     const onMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
       cursor.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+      checkDarkBackground();
     };
 
     const animate = () => {
-      followerX += (mouseX - followerX) * 0.15;
-      followerY += (mouseY - followerY) * 0.15;
+      followerX += (mouseX - followerX) * 0.12;
+      followerY += (mouseY - followerY) * 0.12;
       follower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%)`;
-      requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
     };
 
     const onEnter = (e: Event) => {
@@ -46,12 +67,13 @@ export default function CustomCursor() {
     window.addEventListener('mousemove', onMove);
     document.addEventListener('mouseover', onEnter);
     document.addEventListener('mouseout', onLeave);
-    animate();
+    rafId = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener('mousemove', onMove);
       document.removeEventListener('mouseover', onEnter);
       document.removeEventListener('mouseout', onLeave);
+      cancelAnimationFrame(rafId);
     };
   }, []);
 
