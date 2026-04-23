@@ -21,6 +21,7 @@ const workItems = await Promise.all(
       slug: w.slug, title: w.data.title, client: w.data.client ?? '',
       category: w.data.category, year: w.data.year,
       coverSrc: cover.src, gallerySrc, description: w.data.description,
+      body: w.body ?? null,
       tags: w.data.tags, order: w.data.order,
     };
   })

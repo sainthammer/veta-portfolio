@@ -63,7 +63,27 @@ collections:
       - { label: "Показывать на главной", name: "featured", widget: "boolean", default: false }
       - { label: "Порядок сортировки", name: "order", widget: "number", default: 0, value_type: "int" }
       - { label: "Внешняя ссылка", name: "externalUrl", widget: "string", required: false, pattern: ["^https?://", "Должна начинаться с http:// или https://"] }
-      - { label: "Полное описание (Markdown)", name: "body", widget: "markdown", required: false }
+      - label: "Описание проекта (Markdown)"
+        name: "body"
+        widget: "markdown"
+        required: false
+        hint: |
+          Поддерживает кастомные блоки:
+          ::: result
+          Текст результата (тёмный блок)
+          :::
+          ::: insight
+          Инсайт или вывод (серый с акцентом)
+          :::
+          ::: quote
+          Цитата клиента
+          :::
+          ::: stat
+          +240% охват
+          :::
+          ::: note
+          Заметка или дополнение
+          :::
 
   # ========== НАСТРОЙКИ САЙТА ==========
   # Все секции — один файл, одна запись. Иначе GitHub API выдаёт

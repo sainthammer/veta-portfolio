@@ -14,6 +14,7 @@ interface Work {
   coverSrc: string;
   gallerySrc: string[];
   description?: string;
+  body?: string;
   tags: string[];
   order: number;
 }
