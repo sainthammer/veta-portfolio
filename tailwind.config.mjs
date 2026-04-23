@@ -24,7 +24,7 @@ export default {
       fontFamily: {
         display: ['"Fraunces"', 'serif'],
         sans: ['"Inter Tight"', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
+        mono: ['"Inter Tight"', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         // Oversized section titles — fills full width
