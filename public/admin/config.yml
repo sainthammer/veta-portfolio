@@ -5,19 +5,15 @@ backend:
   base_url: https://vetasergeeva.ru
   auth_endpoint: /auth
 
-# Редирект после OAuth
 site_url: https://vetasergeeva.ru
 display_url: https://vetasergeeva.ru
 logo_url: /favicon.svg
 
-# Локализация интерфейса
 locale: ru
 
-# Куда загружаются картинки из админки
 media_folder: "src/assets/portfolio"
 public_folder: "/src/assets/portfolio"
 
-# Editorial workflow создаёт PR вместо прямого коммита — удобно для ревью
 publish_mode: simple
 
 collections:
@@ -42,64 +38,91 @@ collections:
         widget: "select"
         options: ["Reels", "Stories", "SMM", "Branding"]
       - { label: "Год", name: "year", widget: "number", default: 2025, value_type: "int", min: 2020, max: 2030 }
-      - { label: "Обложка", name: "cover", widget: "image" }
-      - label: "Галерея (доп. картинки)"
+      - label: "Обложка"
+        name: "cover"
+        widget: "image"
+        media_folder: "/public/images"
+        public_folder: "/images"
+      - label: "Галерея (доп. изображения)"
         name: "gallery"
         widget: "list"
         required: false
-        field: { label: "Изображение", name: "image", widget: "image" }
-      - { label: "Описание (короткое)", name: "description", widget: "text", required: false }
+        field:
+          label: "Изображение"
+          name: "image"
+          widget: "image"
+          media_folder: "/public/images"
+          public_folder: "/images"
+      - { label: "Короткое описание", name: "description", widget: "text", required: false }
       - label: "Теги"
         name: "tags"
         widget: "list"
         required: false
         default: []
-      - { label: "Показать на главной (featured)", name: "featured", widget: "boolean", default: false }
+        field: { label: "Тег", name: "tag", widget: "string" }
+      - { label: "Показывать на главной", name: "featured", widget: "boolean", default: false }
       - { label: "Порядок сортировки", name: "order", widget: "number", default: 0, value_type: "int" }
-      - { label: "Внешняя ссылка (опционально)", name: "externalUrl", widget: "string", required: false, pattern: ["^https?://", "Должна начинаться с http:// или https://"] }
+      - { label: "Внешняя ссылка", name: "externalUrl", widget: "string", required: false, pattern: ["^https?://", "Должна начинаться с http:// или https://"] }
       - { label: "Полное описание (Markdown)", name: "body", widget: "markdown", required: false }
 
   # ========== НАСТРОЙКИ САЙТА ==========
   - name: "settings"
     label: "Настройки сайта"
     files:
-      - label: "Тексты на главной"
-        name: "site"
+
+      # ---------- HERO ----------
+      - label: "Главный экран (Hero)"
+        name: "hero"
         file: "src/data/site.json"
         format: "json"
         fields:
-          - label: "Hero — первый экран"
+          - label: "Hero"
             name: "hero"
             widget: "object"
             fields:
               - { label: "Имя", name: "name", widget: "string" }
-              - { label: "Слоган", name: "tagline", widget: "string", hint: "Разделяйте элементы символом ·" }
-              - { label: "Описание", name: "intro", widget: "text" }
-              - { label: "Статус доступности", name: "availability", widget: "string" }
+              - { label: "Слоган (через · )", name: "tagline", widget: "string", hint: "Разделяйте элементы символом ·, например: Stories · Reels · SMM" }
+              - { label: "Введение", name: "intro", widget: "text" }
+              - { label: "Статус доступности", name: "availability", widget: "string", hint: "Напр.: Доступна для проектов — Q3 2025" }
               - { label: "Локация", name: "location", widget: "string" }
-              - label: "Фото в Hero (до 3 штук)"
+              - label: "Фото в Hero (ровно 3)"
                 name: "photos"
                 widget: "list"
                 max: 3
-                hint: "Вертикальные фото 3:4 или 4:5, рекомендуемый размер от 900x1200px"
+                hint: "Вертикальные фото 3:4 или 4:5, от 900×1200 px. Ровно 3 штуки — под них сверстан макет."
                 fields:
                   - { label: "Фото", name: "src", widget: "image", media_folder: "/public/images", public_folder: "/images" }
-                  - { label: "Alt-текст (для SEO и доступности)", name: "alt", widget: "string" }
-                  - { label: "Подпись (появляется при hover)", name: "caption", widget: "string", required: false }
+                  - { label: "Alt-текст", name: "alt", widget: "string" }
+                  - { label: "Подпись (при наведении)", name: "caption", widget: "string", required: false }
+              - label: "Фото для бегущей строки (Showcase)"
+                name: "showcasePhotos"
+                widget: "list"
+                hint: "Любое количество фото. Вертикальные 3:4 или 4:5. Если список пустой — используются фото из Hero."
+                fields:
+                  - { label: "Фото", name: "src", widget: "image", media_folder: "/public/images", public_folder: "/images" }
+                  - { label: "Alt-текст", name: "alt", widget: "string" }
+                  - { label: "Подпись", name: "caption", widget: "string", required: false }
 
-          - label: "About — о себе"
+      # ---------- ABOUT ----------
+      - label: "О себе (About)"
+        name: "about"
+        file: "src/data/site.json"
+        format: "json"
+        fields:
+          - label: "About"
             name: "about"
             widget: "object"
             fields:
               - { label: "Заголовок", name: "headline", widget: "string" }
               - { label: "Текст", name: "body", widget: "text" }
-              - { label: "Фото автора", name: "photo", widget: "image", hint: "Вертикальное фото 4:5, рекомендуемый размер ~1200x1500px", media_folder: "/public/images", public_folder: "/images" }
+              - { label: "Фото автора", name: "photo", widget: "image", hint: "Вертикальное 4:5, от 1200×1500 px", media_folder: "/public/images", public_folder: "/images" }
               - { label: "Подпись под фото", name: "photoCaption", widget: "string" }
-              - label: "Хайлайты (список буллетов)"
+              - label: "Хайлайты"
                 name: "highlights"
                 widget: "list"
                 required: false
                 hint: "Короткие пункты — опыт, сертификаты, достижения"
+                field: { label: "Пункт", name: "item", widget: "string" }
               - label: "Статистика"
                 name: "stats"
                 widget: "list"
@@ -107,28 +130,47 @@ collections:
                   - { label: "Значение", name: "value", widget: "string" }
                   - { label: "Подпись", name: "label", widget: "string" }
 
-          - label: "Services — услуги"
+      # ---------- SERVICES ----------
+      - label: "Услуги (Services)"
+        name: "services_settings"
+        file: "src/data/site.json"
+        format: "json"
+        fields:
+          - label: "Services"
             name: "services"
             widget: "list"
             fields:
-              - { label: "Номер", name: "number", widget: "string" }
+              - { label: "Номер (01, 02...)", name: "number", widget: "string" }
               - { label: "Название", name: "title", widget: "string" }
               - { label: "Описание", name: "description", widget: "text" }
-              - label: "Что входит (буллеты)"
+              - label: "Что входит"
                 name: "bullets"
                 widget: "list"
+                field: { label: "Пункт", name: "item", widget: "string" }
 
-          - label: "Contact — контакты"
+      # ---------- CONTACT ----------
+      - label: "Контакты (Contact)"
+        name: "contact_settings"
+        file: "src/data/site.json"
+        format: "json"
+        fields:
+          - label: "Contact"
             name: "contact"
             widget: "object"
             fields:
-              - { label: "Заголовок секции", name: "headline", widget: "string" }
+              - { label: "Заголовок", name: "headline", widget: "string" }
               - { label: "Подзаголовок", name: "subline", widget: "string" }
               - { label: "Email", name: "email", widget: "string" }
-              - { label: "Telegram", name: "telegram", widget: "string" }
-              - { label: "Instagram", name: "instagram", widget: "string" }
-              - { label: "TikTok", name: "tiktok", widget: "string" }
+              - { label: "Telegram", name: "telegram", widget: "string", hint: "Начиная с @" }
+              - { label: "Instagram", name: "instagram", widget: "string", hint: "Начиная с @" }
+              - { label: "TikTok", name: "tiktok", widget: "string", hint: "Начиная с @" }
 
+      # ---------- FOOTER ----------
+      - label: "Футер"
+        name: "footer_settings"
+        file: "src/data/site.json"
+        format: "json"
+        fields:
           - label: "Footer"
             name: "footer"
             widget: "object"

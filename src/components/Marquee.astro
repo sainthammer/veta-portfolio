@@ -1,12 +1,12 @@
 ---
 const words = ['Reels', 'Stories', 'SMM', 'Content', 'Strategy', 'Viral', 'Instagram', 'TikTok'];
-// Duplicate for seamless loop
-const items = [...words, ...words];
+// Тройное дублирование — смотрится плавнее на любой ширине экрана
+const items = [...words, ...words, ...words];
 ---
 
 <section class="py-12 md:py-20 border-y border-ink/10 overflow-hidden">
   <div class="marquee-fade">
-    <div class="flex animate-marquee whitespace-nowrap">
+    <div class="marquee-track flex whitespace-nowrap">
       {items.map((word, i) => (
         <div class="flex items-center gap-8 md:gap-16 px-4 md:px-8 shrink-0">
           <span class="font-display italic text-5xl md:text-8xl text-ink">{word}</span>
@@ -16,3 +16,24 @@ const items = [...words, ...words];
     </div>
   </div>
 </section>
+
+<style>
+  .marquee-track {
+    /* translate3d вместо translateX — включает GPU-ускорение */
+    will-change: transform;
+    transform: translateZ(0);
+    /* Десктоп: 25s (умеренно), мобайл: 14s (шустрее) */
+    animation: marquee-scroll 25s linear infinite;
+  }
+
+  @media (max-width: 767px) {
+    .marquee-track {
+      animation-duration: 14s;
+    }
+  }
+
+  @keyframes marquee-scroll {
+    0%   { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-33.333%, 0, 0); }
+  }
+</style>

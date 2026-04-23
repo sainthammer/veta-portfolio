@@ -1,13 +1,15 @@
 ---
 import siteData from '@/data/site.json';
 const { hero } = siteData;
-// duplicate for seamless loop
-const photos = [...hero.photos, ...hero.photos];
+const sourcePhotos = (hero as any).showcasePhotos?.length
+  ? (hero as any).showcasePhotos
+  : hero.photos;
+const photos = [...sourcePhotos, ...sourcePhotos, ...sourcePhotos];
 ---
 
 <section id="showcase" class="relative py-12 md:py-20 border-y border-ink/10 overflow-hidden bg-bg-secondary">
   <div class="marquee-fade">
-    <div class="flex animate-marquee gap-6 md:gap-10 w-max">
+    <div class="photo-marquee-track flex gap-6 md:gap-10 w-max">
       {photos.map((photo: any, idx: number) => (
         <div class="shrink-0 aspect-[3/4] w-[60vw] md:w-[30vw] lg:w-[22vw] relative overflow-hidden rounded-sm group">
           <img
@@ -20,7 +22,7 @@ const photos = [...hero.photos, ...hero.photos];
           {photo.caption && (
             <div class="absolute bottom-4 left-4 right-4">
               <span class="pill bg-bg/90 backdrop-blur-sm text-[10px] uppercase tracking-widest">
-                {}
+                {photo.caption}
               </span>
             </div>
           )}
@@ -29,3 +31,22 @@ const photos = [...hero.photos, ...hero.photos];
     </div>
   </div>
 </section>
+
+<style>
+  .photo-marquee-track {
+    will-change: transform;
+    transform: translateZ(0);
+    animation: photo-marquee-scroll 30s linear infinite;
+  }
+
+  @media (max-width: 767px) {
+    .photo-marquee-track {
+      animation-duration: 18s;
+    }
+  }
+
+  @keyframes photo-marquee-scroll {
+    0%   { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-33.333%, 0, 0); }
+  }
+</style>
