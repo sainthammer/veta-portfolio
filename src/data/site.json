@@ -45,42 +45,31 @@
       }
     ]
   },
-  "footer": {
-    "copyright": "© 2025 Veta Sergeeva"
-  },
-  "contact": {
-    "tiktok": "@vetasergeeva",
-    "instagram": "@veta.sergeeva",
-    "telegram": "@vetasergeeva",
-    "email": "hello@vetasergeeva.com",
-    "subline": "Напишите мне в Telegram или на почту — отвечаю в течение дня",
-    "headline": "Давайте создадим что-то классное"
-  },
   "about": {
-    "stats": [
-      {
-        "label": "Проектов",
-        "value": "120+"
-      },
-      {
-        "label": "Охвата",
-        "value": "5M+"
-      },
-      {
-        "label": "Клиентов",
-        "value": "48"
-      }
-    ],
+    "headline": "Контент, который работает",
+    "body": "Пять лет делаю Stories и Reels для малого бизнеса, локальных брендов и экспертов. Знаю, как алгоритмы Instagram и TikTok любят ваш контент.",
+    "photo": "/images/hero-2.jpg",
+    "photoCaption": "Veta Sergeeva — SMM-специалист, Цуг",
     "highlights": [
       "5+ лет в SMM",
       "Работала с брендами в EU и СНГ",
       "Snezhana-certified content strategist",
       "Преподаю в онлайн-школе контент-мейкеров"
     ],
-    "photoCaption": "Veta Sergeeva — SMM-специалист, Цуг",
-    "photo": "/images/veta-portrait.jpg",
-    "body": "Пять лет делаю Stories и Reels для малого бизнеса, локальных брендов и экспертов. Знаю, как алгоритмы Instagram и TikTok любят ваш контент.",
-    "headline": "Контент, который работает"
+    "stats": [
+      {
+        "value": "120+",
+        "label": "Проектов"
+      },
+      {
+        "value": "5M+",
+        "label": "Охвата"
+      },
+      {
+        "value": "48",
+        "label": "Клиентов"
+      }
+    ]
   },
   "services": [
     {
@@ -116,5 +105,16 @@
         "Платное продвижение"
       ]
     }
-  ]
+  ],
+  "contact": {
+    "headline": "Давайте создадим что-то классное",
+    "subline": "Напишите мне в Telegram или на почту — отвечаю в течение дня",
+    "email": "hello@vetasergeeva.com",
+    "telegram": "@vetasergeeva",
+    "instagram": "@veta.sergeeva",
+    "tiktok": "@vetasergeeva"
+  },
+  "footer": {
+    "copyright": "© 2025 Veta Sergeeva"
+  }
 }
