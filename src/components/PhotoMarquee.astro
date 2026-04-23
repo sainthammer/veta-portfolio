@@ -1,22 +1,42 @@
 ---
 import siteData from '@/data/site.json';
+
+interface Props {
+  speed?: number;
+  speedMobile?: number;
+}
+
+const {
+  speed = 80,
+  speedMobile = 100,
+} = Astro.props;
+
 const { hero } = siteData;
 const sourcePhotos = (hero as any).showcasePhotos?.length
   ? (hero as any).showcasePhotos
   : hero.photos;
 ---
 
-<section id="showcase" class="relative py-12 md:py-20 border-y border-ink/10 overflow-hidden bg-bg-secondary">
-  <div class="marquee-fade">
-    <div class="photo-marquee-outer">
-      {[0, 1].map((copy) => (
-        <div class="photo-marquee-inner" aria-hidden={copy === 1 ? 'true' : undefined}>
+<section
+  id="showcase"
+  class="relative py-12 md:py-20 border-y border-ink/10 overflow-hidden bg-black"
+>
+  <div class="photo-marquee">
+    <div
+      class="photo-marquee-track"
+      data-speed={speed}
+      data-speed-mobile={speedMobile}
+    >
+      {[0, 1, 2, 3].map((copy) => (
+        <ul class="photo-marquee-list" aria-hidden={copy > 0 ? 'true' : undefined}>
           {sourcePhotos.map((photo: any, idx: number) => (
-            <div class="shrink-0 aspect-[3/4] w-[60vw] md:w-[30vw] lg:w-[22vw] relative overflow-hidden rounded-sm group mx-3 md:mx-5">
+            <li class="photo-marquee-item shrink-0 aspect-[3/4] w-[80vw] md:aspect-[4/5] md:w-[30vw] lg:w-[22vw] relative overflow-hidden rounded-sm group mx-3 md:mx-5">
               <img
                 src={photo.src}
                 alt={photo.alt}
                 loading={copy === 0 && idx < 3 ? 'eager' : 'lazy'}
+                decoding="async"
+                draggable="false"
                 class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-ink/20 to-transparent pointer-events-none"></div>
@@ -27,34 +47,125 @@ const sourcePhotos = (hero as any).showcasePhotos?.length
                   </span>
                 </div>
               )}
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       ))}
     </div>
   </div>
 </section>
 
 <style>
-  .photo-marquee-outer {
+  .photo-marquee {
     display: flex;
-    width: max-content;
+    overflow: hidden;
   }
 
-  .photo-marquee-inner {
+  .photo-marquee-track {
     display: flex;
     flex-shrink: 0;
-    animation: photo-marquee 30s linear infinite;
+    width: max-content;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 
-  @media (max-width: 767px) {
-    .photo-marquee-inner {
-      animation-duration: 18s;
-    }
+  .photo-marquee-list {
+    display: flex;
+    flex-shrink: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
-  @keyframes photo-marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-100%); }
+  .photo-marquee-item {
+    /* Tailwind-утилиты уже заданы в разметке (mx-3/md:mx-5, aspect, w-*) */
   }
 </style>
+
+<script>
+  function initPhotoMarquee() {
+    const tracks = document.querySelectorAll<HTMLElement>('.photo-marquee-track');
+
+    tracks.forEach((track) => {
+      const firstList = track.querySelector<HTMLElement>('.photo-marquee-list');
+      if (!firstList) return;
+
+      const speedDesktop = Number(track.dataset.speed) || 80;
+      const speedMobile = Number(track.dataset.speedMobile) || 100;
+
+      let offset = 0;
+      let lastTime = performance.now();
+      let singleCopyWidth = firstList.offsetWidth;
+      let rafId: number;
+      let paused = false;
+
+      const updateWidth = () => {
+        singleCopyWidth = firstList.offsetWidth;
+      };
+
+      // Пересчёт после загрузки шрифтов (на всякий случай, если кэпшены влияют)
+      if (document.fonts) {
+        document.fonts.ready.then(updateWidth);
+      }
+
+      // Пересчёт при загрузке каждой картинки — ключевое для фото-карусели
+      const images = firstList.querySelectorAll('img');
+      images.forEach((img) => {
+        if (!img.complete) {
+          img.addEventListener('load', updateWidth, { once: true });
+          img.addEventListener('error', updateWidth, { once: true });
+        }
+      });
+
+      // И при любых изменениях размера
+      const resizeObserver = new ResizeObserver(updateWidth);
+      resizeObserver.observe(firstList);
+
+      const getSpeed = () =>
+        window.matchMedia('(max-width: 767px)').matches ? speedMobile : speedDesktop;
+
+      const tick = (now: number) => {
+        if (paused) {
+          lastTime = now;
+          rafId = requestAnimationFrame(tick);
+          return;
+        }
+
+        const delta = (now - lastTime) / 1000;
+        lastTime = now;
+
+        offset += getSpeed() * delta;
+
+        if (singleCopyWidth > 0 && offset >= singleCopyWidth) {
+          offset -= singleCopyWidth;
+        }
+
+        track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+        rafId = requestAnimationFrame(tick);
+      };
+
+      rafId = requestAnimationFrame(tick);
+
+      // Пауза на скрытой вкладке, чтобы не было рывка при возвращении
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          paused = true;
+        } else {
+          paused = false;
+          lastTime = performance.now();
+        }
+      });
+
+      // Reduced motion
+      const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (motionQuery.matches) {
+        cancelAnimationFrame(rafId);
+      }
+    });
+  }
+
+  initPhotoMarquee();
+  document.addEventListener('astro:page-load', initPhotoMarquee);
+</script>
