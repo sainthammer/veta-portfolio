@@ -1,8 +1,8 @@
 {
   "hero": {
     "name": "Veta Sergeeva",
-    "tagline": "Stories · Reels · SMM · SMM",
-    "intro": "Создаю контент, который смотрят до конца и пересылают друзьям. Превращаю бренды в любимчиков аудитории. test",
+    "tagline": "Stories · Reels · SMM",
+    "intro": "Создаю контент, который смотрят до конца и пересылают друзьям. Превращаю бренды в любимчиков аудитории.",
     "availability": "Доступна для проектов — Q3 2025",
     "location": "Remote · Everywhere",
     "photos": [
@@ -46,7 +46,7 @@
     ]
   },
   "about": {
-    "headline": "Контент, который работает test",
+    "headline": "Контент, который работает",
     "body": "Пять лет делаю Stories и Reels для малого бизнеса, локальных брендов и экспертов. Знаю, как алгоритмы Instagram и TikTok любят ваш контент.",
     "photo": "/images/veta-portrait.jpg",
     "photoCaption": "Veta Sergeeva — SMM-специалист, Цуг",
