@@ -3,25 +3,6 @@
     "name": "Veta Sergeeva",
     "tagline": "Stories · Reels · SMM",
     "intro": "Создаю контент, который смотрят до конца и пересылают друзьям. Превращаю бренды в любимчиков аудитории.",
-    "availability": "Доступна для проектов — Q3 2025",
-    "location": "Remote · Everywhere",
-    "photos": [
-      {
-        "src": "/images/hero-1.jpg",
-        "alt": "Veta Sergeeva — портрет",
-        "caption": "В работе — 2025"
-      },
-      {
-        "src": "/images/hero-2.jpg",
-        "alt": "Съёмка Reels",
-        "caption": "Reels production · Zurich"
-      },
-      {
-        "src": "/images/hero-3.jpg",
-        "alt": "За монтажом",
-        "caption": "Editing workflow"
-      }
-    ],
     "showcasePhotos": [
       {
         "src": "/images/hero-1.jpg",
@@ -43,13 +24,32 @@
         "alt": "alt",
         "caption": ""
       }
+    ],
+    "availability": "Доступна для проектов — Q3 2025",
+    "location": "Remote · Everywhere",
+    "photos": [
+      {
+        "src": "/images/hero-1.jpg",
+        "alt": "Veta Sergeeva — портрет",
+        "caption": "В работе — 2025"
+      },
+      {
+        "src": "/images/hero-2.jpg",
+        "alt": "Съёмка Reels",
+        "caption": "Reels production · Zurich"
+      },
+      {
+        "src": "/images/hero-3.jpg",
+        "alt": "За монтажом",
+        "caption": "Editing workflow"
+      }
     ]
   },
   "about": {
     "headline": "Контент, который работает",
     "body": "Пять лет делаю Stories и Reels для малого бизнеса, локальных брендов и экспертов. Знаю, как алгоритмы Instagram и TikTok любят ваш контент.",
     "photo": "/images/veta-portrait.jpg",
-    "photoCaption": "Veta Sergeeva — SMM-специалист, Цуг",
+    "photoCaption": "Veta Sergeeva — SMM-специалист, Санкт-Петербург",
     "highlights": [
       "5+ лет в SMM",
       "Работала с брендами в EU и СНГ",
