@@ -174,7 +174,7 @@ export default function Lightbox({ work, onClose }: Props) {
                   type="button"
                   onClick={prev}
                   aria-label="Предыдущее"
-                  className="group shrink-0 w-10 md:w-16 flex items-center justify-center hover:bg-ink/5 transition-colors duration-300"
+                  className="group shrink-0 w-10 md:w-16 flex items-center justify-center transition-colors duration-300"
                   data-cursor-hover
                 >
                   <span className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-ink/10 group-hover:bg-ink group-hover:text-bg text-ink flex items-center justify-center transition-colors duration-300">
@@ -208,7 +208,7 @@ export default function Lightbox({ work, onClose }: Props) {
                   type="button"
                   onClick={next}
                   aria-label="Следующее"
-                  className="group shrink-0 w-10 md:w-16 flex items-center justify-center hover:bg-ink/5 transition-colors duration-300"
+                  className="group shrink-0 w-10 md:w-16 flex items-center justify-center transition-colors duration-300"
                   data-cursor-hover
                 >
                   <span className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-ink/10 group-hover:bg-ink group-hover:text-bg text-ink flex items-center justify-center transition-colors duration-300">
