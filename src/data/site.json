@@ -2,7 +2,7 @@
   "hero": {
     "name": "Veta Sergeeva",
     "tagline": "Stories · Reels · SMM",
-    "intro": "Создаю контент, который смотрят до конца и пересылают друзьям. Превращаю бренды в любимчиков аудитории.",
+    "intro": "Создаю контент, который смотрят до конца и пересылают друзьям. Превращаю бренды в любимчиков аудитории. test",
     "showcasePhotos": [
       {
         "src": "/images/hero-1.jpg",
@@ -25,25 +25,25 @@
         "caption": ""
       }
     ],
-    "availability": "Доступна для проектов — Q3 2025",
-    "location": "Remote · Everywhere",
     "photos": [
       {
-        "src": "/images/hero-1.jpg",
+        "caption": "В работе — 2025",
         "alt": "Veta Sergeeva — портрет",
-        "caption": "В работе — 2025"
+        "src": "/images/hero-1.jpg"
       },
       {
-        "src": "/images/hero-2.jpg",
+        "caption": "Reels production · Zurich",
         "alt": "Съёмка Reels",
-        "caption": "Reels production · Zurich"
+        "src": "/images/hero-2.jpg"
       },
       {
-        "src": "/images/hero-3.jpg",
+        "caption": "Editing workflow",
         "alt": "За монтажом",
-        "caption": "Editing workflow"
+        "src": "/images/hero-3.jpg"
       }
-    ]
+    ],
+    "location": "Remote · Everywhere",
+    "availability": "Доступна для проектов — Q3 2025"
   },
   "about": {
     "headline": "Контент, который работает",
