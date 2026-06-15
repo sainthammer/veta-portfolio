@@ -1,70 +1,110 @@
 ---
-import siteData from '@/data/site.json';
+import siteData from "@/data/site.json";
 const { about } = siteData;
 ---
 
 <section id="about" class="relative py-24 md:py-40 overflow-hidden">
-  <div class="container-wide">
-
-    {/* Oversized title */}
-    <div class="mb-4 md:mb-6 reveal-up overflow-hidden">
-      <h2 class="font-sans font-black uppercase leading-none tracking-tighter"
-          style="font-size: clamp(2.5rem, 11vw, 11rem)">
-        About
-      </h2>
-    </div>
-
-    <p class="text-xs font-mono uppercase tracking-widest text-ink-muted mb-16 md:mb-24 reveal-up max-w-xs" style="transition-delay:0.1s">
-      — Коротко о главном
-    </p>
-
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start">
-      {/* PHOTO */}
-      <div class="md:col-span-5 md:sticky md:top-32 reveal-up">
-        <div class="relative group">
-          <div class="absolute -inset-3 md:-inset-4 bg-ink rounded-sm rotate-[-2deg] group-hover:rotate-[-3deg] transition-transform duration-700 ease-out"></div>
-          <div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-bg-secondary">
-            <img src={about.photo} alt={about.photoCaption} loading="lazy"
-                 class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-ink/10 to-transparent pointer-events-none"></div>
-          </div>
-          <div class="mt-6 flex items-center gap-3">
-            <span class="w-6 h-px bg-ink/40"></span>
-            <span class="text-xs font-mono uppercase tracking-widest text-ink-muted">{about.photoCaption}</span>
-          </div>
+    <div class="container-wide">
+        {/* Oversized title */}
+        <div class="mb-4 md:mb-6 reveal-up overflow-hidden">
+            <h2
+                class="font-sans font-black uppercase leading-none tracking-tighter"
+                style="font-size: clamp(2.5rem, 11vw, 11rem)"
+            >
+                About Me
+            </h2>
         </div>
-      </div>
 
-      {/* TEXT */}
-      <div class="md:col-span-7 md:pl-8">
-        <p class="text-sm text-ink-muted leading-relaxed max-w-xl reveal-up">
-          {about.body}
+        <p
+            class="text-xs font-mono uppercase tracking-widest text-ink-muted mb-16 md:mb-24 reveal-up max-w-xs"
+            style="transition-delay:0.1s"
+        >
+            — Коротко о главном
         </p>
 
-        {about.highlights && about.highlights.length > 0 && (
-          <ul class="mt-10 space-y-0 reveal-up" style="transition-delay: 0.1s">
-            {about.highlights.map((h: string, idx: number) => (
-              <li class="flex items-start gap-4 py-4 border-b border-ink/10 group">
-                <span class="font-mono text-xs text-ink-muted pt-0.5 w-8 shrink-0">{String(idx + 1).padStart(2, '0')}</span>
-                <span class="text-xs text-ink-muted group-hover:text-ink transition-colors duration-300 uppercase tracking-widest">{h}</span>
-                <span class="ml-auto text-ink opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-500">→</span>
-              </li>
-            ))}
-          </ul>
-        )}
-
-        <div class="mt-14 grid grid-cols-3 gap-4 md:gap-8 pt-10 border-t border-ink/10 reveal-up" style="transition-delay: 0.2s">
-          {about.stats.map((stat: any) => (
-            <div class="group">
-              <div class="font-sans font-black uppercase leading-none tracking-tighter"
-                   style="font-size: clamp(2rem, 5vw, 4rem)">
-                {stat.value}
-              </div>
-              <div class="mt-2 text-xs font-mono uppercase tracking-widest text-ink-muted">{stat.label}</div>
+        <div
+            class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start"
+        >
+            {/* PHOTO */}
+            <div class="md:col-span-5 md:sticky md:top-32 reveal-up">
+                <div class="relative group">
+                    <div
+                        class="absolute -inset-3 md:-inset-4 bg-ink rounded-sm rotate-[-2deg] group-hover:rotate-[-3deg] transition-transform duration-700 ease-out"
+                    >
+                    </div>
+                    <div
+                        class="relative aspect-[4/5] overflow-hidden rounded-sm bg-bg-secondary"
+                    >
+                        <img
+                            src={about.photo}
+                            alt={about.photoCaption}
+                            loading="lazy"
+                            class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
+                        />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-ink/10 to-transparent pointer-events-none"
+                        >
+                        </div>
+                    </div>
+                    <div class="mt-6 flex items-center gap-3">
+                        <span class="w-6 h-px bg-ink/40"></span>
+                        <span
+                            class="text-xs font-mono uppercase tracking-widest text-ink-muted"
+                            >{about.photoCaption}</span
+                        >
+                    </div>
+                </div>
             </div>
-          ))}
+
+            {/* TEXT */}
+            <div class="md:col-span-7 md:pl-8">
+                <p
+                    class="text-sm text-ink-muted leading-relaxed max-w-xl reveal-up"
+                >
+                    {about.body}
+                </p>
+
+                {
+                    about.highlights && about.highlights.length > 0 && (
+                        <ul
+                            class="mt-10 space-y-0 reveal-up"
+                            style="transition-delay: 0.1s"
+                        >
+                            {about.highlights.map((h: string, idx: number) => (
+                                <li class="flex items-start gap-4 py-4 border-b border-ink/10 group">
+                                    <span class="font-mono text-xs text-ink-muted pt-0.5 w-8 shrink-0">
+                                        {String(idx + 1).padStart(2, "0")}
+                                    </span>
+                                    <span class="text-xs text-ink-muted group-hover:text-ink transition-colors duration-300 uppercase tracking-widest">
+                                        {h}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    )
+                }
+
+                <div
+                    class="mt-14 grid grid-cols-3 gap-4 md:gap-8 pt-10 border-t border-ink/10 reveal-up"
+                    style="transition-delay: 0.2s"
+                >
+                    {
+                        about.stats.map((stat: any) => (
+                            <div class="group">
+                                <div
+                                    class="font-sans font-black uppercase leading-none tracking-tighter"
+                                    style="font-size: clamp(2rem, 5vw, 4rem)"
+                                >
+                                    {stat.value}
+                                </div>
+                                <div class="mt-2 text-xs font-mono uppercase tracking-widest text-ink-muted">
+                                    {stat.label}
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
