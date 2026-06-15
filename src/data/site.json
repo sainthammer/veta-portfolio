@@ -45,8 +45,13 @@
       }
     ]
   },
+  "work": {
+    "headline": "Selected Work",
+    "subtitle": "Небольшая выборка последних работ. Полное портфолио — по запросу."
+  },
   "about": {
-    "headline": "Контент, который работает",
+    "headline": "About Me",
+    "subtitle": "Коротко о главном",
     "body": "Пять лет делаю Stories и Reels для малого бизнеса, локальных брендов и экспертов. Знаю, как алгоритмы Instagram и TikTok любят ваш контент.",
     "photo": "/images/veta-portrait.jpg",
     "photoCaption": "Veta Sergeeva — SMM-специалист, Санкт-Петербург",
@@ -71,7 +76,10 @@
       }
     ]
   },
-  "services": [
+  "services": {
+    "headline": "Services",
+    "subtitle": "От одного Reel до полного ведения соцсетей",
+    "items": [
     {
       "number": "01",
       "title": "Reels Production",
@@ -105,9 +113,9 @@
         "Платное продвижение"
       ]
     }
-  ],
+  ]},
   "contact": {
-    "headline": "Давайте создадим что-то классное",
+    "headline": "Contact",
     "subline": "Напишите мне в Telegram или на почту — отвечаю в течение дня",
     "email": "hello@vetasergeeva.com",
     "telegram": "@vetasergeeva",
