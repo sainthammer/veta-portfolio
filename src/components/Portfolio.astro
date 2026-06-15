@@ -3,6 +3,8 @@ import { getCollection } from "astro:content";
 import { getImage } from "astro:assets";
 import ScatteredPortfolio from "@/components/ScatteredPortfolio.tsx";
 import Marquee from "@/components/Marquee.astro";
+import siteData from "@/data/site.json";
+const { work } = siteData;
 
 const works = await getCollection("portfolio");
 works.sort((a, b) => a.data.order - b.data.order);
@@ -55,8 +57,7 @@ const workItems = await Promise.all(
                     class="font-sans font-black uppercase leading-[0.88] tracking-tighter"
                     style="font-size: clamp(2.5rem, 11vw, 11rem)"
                 >
-                    Selected<br class="md:hidden" />
-                    <span class="md:ml-0"> Work</span>
+                    {work.headline}
                 </h2>
                 <div class="flex md:flex-col gap-3 md:gap-1 md:pb-3 shrink-0">
                     <span
@@ -78,7 +79,7 @@ const workItems = await Promise.all(
             class="text-xs font-mono uppercase tracking-widest text-ink-muted mt-10 mb-16 md:mb-24 reveal-up max-w-xs"
             style="transition-delay:0.1s"
         >
-            Небольшая выборка последних работ. Полное портфолио — по запросу.
+            — {work.subtitle}
         </p>
 
         <ScatteredPortfolio works={workItems} client:visible />

@@ -14,7 +14,7 @@ const { services } = siteData;
                 class="font-sans font-black uppercase leading-none tracking-tighter"
                 style="font-size: clamp(2.5rem, 11vw, 11rem)"
             >
-                Services
+                {services.headline}
             </h2>
         </div>
 
@@ -22,12 +22,12 @@ const { services } = siteData;
             class="text-xs font-mono uppercase tracking-widest text-bg/40 mb-16 md:mb-24 reveal-up max-w-xs"
             style="transition-delay:0.1s"
         >
-            — 02 / От одного Reel до полного ведения соцсетей
+            — {services.subtitle}
         </p>
 
         <div class="space-y-0">
             {
-                services.map((service: any) => (
+                services.items.map((service: any) => (
                     <div
                         class="group relative border-t border-bg/10 py-8 md:py-10 cursor-pointer overflow-hidden"
                         data-cursor-hover

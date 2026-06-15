@@ -11,12 +11,12 @@ const { contact } = siteData;
     <div class="mb-4 md:mb-6 reveal-up overflow-hidden">
       <h2 class="font-sans font-black uppercase leading-none tracking-tighter"
           style="font-size: clamp(2.5rem, 11vw, 11rem)">
-        Contact
+        {contact.headline}
       </h2>
     </div>
 
     <p class="text-xs font-mono uppercase tracking-widest text-ink-muted mb-16 md:mb-24 reveal-up max-w-xs" style="transition-delay:0.1s">
-      — 03 / {contact.subline}
+      — {contact.subline}
     </p>
 
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-12">
