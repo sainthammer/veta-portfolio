@@ -1,8 +1,7 @@
 {
   "hero": {
-    "name": "Veta Sergeeva",
     "tagline": "Design · SMM · Content",
-    "intro": "Создаю контент, который работает на бизнес. Превращаю бренды в любимчиков аудитории.",
+    "intro": "Создаю контент, который работает на бизнес. Превращаю бренды в любимчиков аудитории. test",
     "showcasePhotos": [
       {
         "src": "/images/hero-1.jpg",
@@ -25,6 +24,7 @@
         "caption": ""
       }
     ],
+    "name": "Veta Sergeeva",
     "availability": "Доступна для проектов — Q3 2025",
     "location": "Remote · Everywhere",
     "photos": [
@@ -81,48 +81,61 @@
     "headline": "Services",
     "subtitle": "От одного Reel до полного ведения соцсетей",
     "items": [
-    {
-      "number": "01",
-      "title": "Reels Production",
-      "description": "Сценарий, съёмка, монтаж. Вертикальное видео, которое попадает в рекомендации и конвертит в подписчиков.",
-      "bullets": [
-        "Сценарии и идеи",
-        "Съёмка на телефон/камеру",
-        "Монтаж + саунд-дизайн",
-        "Публикация и хэштеги"
-      ]
-    },
-    {
-      "number": "02",
-      "title": "Stories Design",
-      "description": "Ежедневные сторис, которые не хочется пролистывать. Минималистичная эстетика, которая продаёт.",
-      "bullets": [
-        "Шаблоны в едином стиле",
-        "Прогревы и воронки",
-        "Интерактив и опросы",
-        "Highlights-обложки"
-      ]
-    },
-    {
-      "number": "03",
-      "title": "SMM-менеджмент",
-      "description": "Веду соцсети под ключ: стратегия, контент-план, ответы подписчикам, аналитика и рост.",
-      "bullets": [
-        "Контент-план на месяц",
-        "Коммьюнити-менеджмент",
-        "Аналитика и отчёты",
-        "Платное продвижение"
-      ]
-    }
-  ]},
+      {
+        "number": "01",
+        "title": "Reels Production",
+        "description": "Сценарий, съёмка, монтаж. Вертикальное видео, которое попадает в рекомендации и конвертит в подписчиков.",
+        "bullets": [
+          "Сценарии и идеи",
+          "Съёмка на телефон/камеру",
+          "Монтаж + саунд-дизайн",
+          "Публикация и хэштеги"
+        ]
+      },
+      {
+        "number": "02",
+        "title": "Stories Design",
+        "description": "Ежедневные сторис, которые не хочется пролистывать. Минималистичная эстетика, которая продаёт.",
+        "bullets": [
+          "Шаблоны в едином стиле",
+          "Прогревы и воронки",
+          "Интерактив и опросы",
+          "Highlights-обложки"
+        ]
+      },
+      {
+        "number": "03",
+        "title": "SMM-менеджмент",
+        "description": "Веду соцсети под ключ: стратегия, контент-план, ответы подписчикам, аналитика и рост.",
+        "bullets": [
+          "Контент-план на месяц",
+          "Коммьюнити-менеджмент",
+          "Аналитика и отчёты",
+          "Платное продвижение"
+        ]
+      }
+    ]
+  },
   "contact": {
     "headline": "Contact",
     "subline": "Напишите мне в Telegram или на почту — отвечаю в течение дня",
     "email": "hello@vetasergeeva.com",
     "socials": [
-      { "label": "Telegram", "url": "https://t.me/vetasergeeva", "handle": "@vetasergeeva" },
-      { "label": "Instagram", "url": "https://instagram.com/veta.sergeeva", "handle": "@veta.sergeeva" },
-      { "label": "TikTok", "url": "https://tiktok.com/@vetasergeeva", "handle": "@vetasergeeva" }
+      {
+        "label": "Telegram",
+        "url": "https://t.me/vetasergeeva",
+        "handle": "@vetasergeeva"
+      },
+      {
+        "label": "Instagram",
+        "url": "https://instagram.com/veta.sergeeva",
+        "handle": "@veta.sergeeva"
+      },
+      {
+        "label": "TikTok",
+        "url": "https://tiktok.com/@vetasergeeva",
+        "handle": "@vetasergeeva"
+      }
     ]
   },
   "footer": {
