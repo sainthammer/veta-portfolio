@@ -325,37 +325,31 @@ docker compose build site
 docker compose up -d site
 ```
 
-### 🤖 Авто-деплой через webhook (опционально, но удобно)
+### 🤖 Авто-деплой через GitHub Actions
 
-Чтобы Veta не ждала вашего ручного пересбора после каждого изменения в CMS, настройте webhook.
+При каждом пуше в `main` GitHub Actions автоматически подключается к серверу по SSH и пересобирает сайт.
 
-**Простой вариант** — git-hook + systemd path unit:
-
-Создайте `/opt/veta-portfolio/deploy.sh`:
+#### Шаг 1. Создать SSH-ключ на сервере
 
 ```bash
-#!/usr/bin/env bash
-set -e
-cd /opt/veta-portfolio
-git pull --ff-only
-docker compose build site
-docker compose up -d site
-docker image prune -f
+ssh-keygen -t ed25519 -C "github-actions" -f ~/.ssh/github_actions -N ""
+cat ~/.ssh/github_actions.pub >> ~/.ssh/authorized_keys
+cat ~/.ssh/github_actions   # скопируйте вывод — это приватный ключ
 ```
 
-```bash
-chmod +x /opt/veta-portfolio/deploy.sh
-```
+#### Шаг 2. Добавить секреты в GitHub
 
-**Или** используйте GitHub Actions с SSH-деплоем — добавьте `.github/workflows/deploy.yml` (пример можно нагуглить по запросу "github actions ssh deploy").
+Откройте репозиторий → **Settings → Secrets and variables → Actions → New repository secret**:
 
-**Или** — самое простое — раз в 5 минут `git pull + rebuild` через cron:
+| Имя | Значение |
+|-----|----------|
+| `SSH_HOST` | IP-адрес сервера |
+| `SSH_USER` | Пользователь на сервере |
+| `SSH_KEY` | Приватный ключ из шага 1 |
 
-```bash
-crontab -e
-# Добавить:
-*/5 * * * * /opt/veta-portfolio/deploy.sh >> /var/log/veta-deploy.log 2>&1
-```
+#### Шаг 3. Готово
+
+Файл `.github/workflows/deploy.yml` уже есть в репозитории. После следующего пуша в `main` деплой запустится автоматически. Статус можно смотреть во вкладке **Actions** репозитория.
 
 ---
 
