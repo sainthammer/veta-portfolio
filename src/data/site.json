@@ -45,8 +45,13 @@
       }
     ]
   },
+  "work": {
+    "headline": "Selected Work",
+    "subtitle": "Небольшая выборка последних работ. Полное портфолио — по запросу."
+  },
   "about": {
-    "headline": "Контент, который работает",
+    "headline": "About Me",
+    "subtitle": "Коротко о главном",
     "body": "Более двух лет создаю контент для бизнеса, локальных брендов и экспертов. Совмещаю сильную стратегию и безупречный дизайн.",
     "photo": "/images/veta-portrait.jpg",
     "photoCaption": "Veta Sergeeva — SMM-специалист, дизайнер, Санкт-Петербург",
@@ -72,7 +77,10 @@
       }
     ]
   },
-  "services": [
+  "services": {
+    "headline": "Services",
+    "subtitle": "От одного Reel до полного ведения соцсетей",
+    "items": [
     {
       "number": "01",
       "title": "Reels Production",
@@ -106,9 +114,9 @@
         "Платное продвижение"
       ]
     }
-  ],
+  ]},
   "contact": {
-    "headline": "Давайте создадим что-то классное",
+    "headline": "Contact",
     "subline": "Напишите мне в Telegram или на почту — отвечаю в течение дня",
     "email": "hello@vetasergeeva.com",
     "telegram": "@vetasergeeva",
