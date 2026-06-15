@@ -102,7 +102,6 @@ collections:
             name: "hero"
             widget: "object"
             fields:
-              - { label: "Имя", name: "name", widget: "string" }
               - { label: "Слоган (через · )", name: "tagline", widget: "string", hint: "Разделяйте элементы символом ·, например: Stories · Reels · SMM" }
               - { label: "Введение", name: "intro", widget: "text" }
 #              - { label: "Статус доступности", name: "availability", widget: "string", hint: "Напр.: Доступна для проектов — Q3 2025" }
@@ -126,12 +125,21 @@ collections:
                   - { label: "Alt-текст", name: "alt", widget: "string" }
                   - { label: "Подпись", name: "caption", widget: "string", required: false }
 
+          # ---------- WORK ----------
+          - label: "Work — портфолио секция"
+            name: "work"
+            widget: "object"
+            fields:
+              - { label: "Заголовок", name: "headline", widget: "string" }
+              - { label: "Подзаголовок", name: "subtitle", widget: "string" }
+
           # ---------- ABOUT ----------
           - label: "About — о себе"
             name: "about"
             widget: "object"
             fields:
               - { label: "Заголовок", name: "headline", widget: "string" }
+              - { label: "Подзаголовок", name: "subtitle", widget: "string" }
               - { label: "Текст", name: "body", widget: "text" }
               - { label: "Фото автора", name: "photo", widget: "image", hint: "Вертикальное 4:5, от 1200×1500 px", media_folder: "/public/images", public_folder: "/images" }
               - { label: "Подпись под фото", name: "photoCaption", widget: "string" }
@@ -151,22 +159,28 @@ collections:
           # ---------- SERVICES ----------
           - label: "Services — услуги"
             name: "services"
-            widget: "list"
+            widget: "object"
             fields:
-              - { label: "Номер (01, 02...)", name: "number", widget: "string" }
-              - { label: "Название", name: "title", widget: "string" }
-              - { label: "Описание", name: "description", widget: "text" }
-              - label: "Что входит"
-                name: "bullets"
+              - { label: "Заголовок", name: "headline", widget: "string" }
+              - { label: "Подзаголовок", name: "subtitle", widget: "string" }
+              - label: "Список услуг"
+                name: "items"
                 widget: "list"
-                field: { label: "Пункт", name: "item", widget: "string" }
+                fields:
+                  - { label: "Номер (01, 02...)", name: "number", widget: "string" }
+                  - { label: "Название", name: "title", widget: "string" }
+                  - { label: "Описание", name: "description", widget: "text" }
+                  - label: "Что входит"
+                    name: "bullets"
+                    widget: "list"
+                    field: { label: "Пункт", name: "item", widget: "string" }
 
           # ---------- CONTACT ----------
           - label: "Contact — контакты"
             name: "contact"
             widget: "object"
             fields:
-              - { label: "Заголовок", name: "headline", widget: "string" }
+              - { label: "Заголовок секции", name: "headline", widget: "string" }
               - { label: "Подзаголовок", name: "subline", widget: "string" }
               - { label: "Email", name: "email", widget: "string" }
               - { label: "Telegram", name: "telegram", widget: "string", hint: "Начиная с @" }
