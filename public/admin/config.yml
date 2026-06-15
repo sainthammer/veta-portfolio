@@ -126,7 +126,7 @@ collections:
                   - { label: "Подпись", name: "caption", widget: "string", required: false }
 
           # ---------- WORK ----------
-          - label: "Work — портфолио секция"
+          - label: "Selected Work — заголовок секции"
             name: "work"
             widget: "object"
             fields:
