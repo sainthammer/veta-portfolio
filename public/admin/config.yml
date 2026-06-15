@@ -183,9 +183,13 @@ collections:
               - { label: "Заголовок секции", name: "headline", widget: "string" }
               - { label: "Подзаголовок", name: "subline", widget: "string" }
               - { label: "Email", name: "email", widget: "string" }
-              - { label: "Telegram", name: "telegram", widget: "string", hint: "Начиная с @" }
-              - { label: "Instagram", name: "instagram", widget: "string", hint: "Начиная с @" }
-              - { label: "TikTok", name: "tiktok", widget: "string", hint: "Начиная с @" }
+              - label: "Соцсети"
+                name: "socials"
+                widget: "list"
+                fields:
+                  - { label: "Название", name: "label", widget: "string", hint: "Telegram, Instagram, YouTube..." }
+                  - { label: "Ссылка", name: "url", widget: "string", hint: "Полный URL: https://t.me/username" }
+                  - { label: "Подпись", name: "handle", widget: "string", hint: "@username — отображается на сайте", required: false }
 
           # ---------- FOOTER ----------
           - label: "Footer"

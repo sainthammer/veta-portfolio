@@ -39,20 +39,16 @@ const { contact } = siteData;
       </MagneticButton>
 
       {/* Socials */}
-      <div class="flex flex-col gap-3 shrink-0">
-        <a href={`https://t.me/${contact.telegram.replace('@','')}`} target="_blank" rel="noopener"
-           class="link-underline text-xs font-mono uppercase tracking-widest text-ink-muted hover:text-ink transition-colors">
-          Telegram {contact.telegram}
-        </a>
-        <a href={`https://instagram.com/${contact.instagram.replace('@','')}`} target="_blank" rel="noopener"
-           class="link-underline text-xs font-mono uppercase tracking-widest text-ink-muted hover:text-ink transition-colors">
-          Instagram {contact.instagram}
-        </a>
-        <a href={`https://tiktok.com/${contact.tiktok}`} target="_blank" rel="noopener"
-           class="link-underline text-xs font-mono uppercase tracking-widest text-ink-muted hover:text-ink transition-colors">
-          TikTok {contact.tiktok}
-        </a>
-      </div>
+      {contact.socials && contact.socials.length > 0 && (
+        <div class="flex flex-col gap-3 shrink-0">
+          {contact.socials.map((s: any) => (
+            <a href={s.url} target="_blank" rel="noopener"
+               class="link-underline text-xs font-mono uppercase tracking-widest text-ink-muted hover:text-ink transition-colors">
+              {s.label} {s.handle}
+            </a>
+          ))}
+        </div>
+      )}
     </div>
   </div>
 </section>

@@ -119,9 +119,11 @@
     "headline": "Contact",
     "subline": "Напишите мне в Telegram или на почту — отвечаю в течение дня",
     "email": "hello@vetasergeeva.com",
-    "telegram": "@vetasergeeva",
-    "instagram": "@veta.sergeeva",
-    "tiktok": "@vetasergeeva"
+    "socials": [
+      { "label": "Telegram", "url": "https://t.me/vetasergeeva", "handle": "@vetasergeeva" },
+      { "label": "Instagram", "url": "https://instagram.com/veta.sergeeva", "handle": "@veta.sergeeva" },
+      { "label": "TikTok", "url": "https://tiktok.com/@vetasergeeva", "handle": "@vetasergeeva" }
+    ]
   },
   "footer": {
     "copyright": "© 2025 Veta Sergeeva"
