@@ -1,8 +1,8 @@
 {
   "hero": {
     "name": "Veta Sergeeva",
-    "tagline": "Stories · Reels · SMM",
-    "intro": "Создаю контент, который смотрят до конца и пересылают друзьям. Превращаю бренды в любимчиков аудитории.",
+    "tagline": "Design · SMM · Content",
+    "intro": "Создаю контент, который работает на бизнес. Превращаю бренды в любимчиков аудитории.",
     "showcasePhotos": [
       {
         "src": "/images/hero-1.jpg",
@@ -45,41 +45,34 @@
       }
     ]
   },
-  "work": {
-    "headline": "Selected Work",
-    "subtitle": "Небольшая выборка последних работ. Полное портфолио — по запросу."
-  },
   "about": {
-    "headline": "About Me",
-    "subtitle": "Коротко о главном",
-    "body": "Пять лет делаю Stories и Reels для малого бизнеса, локальных брендов и экспертов. Знаю, как алгоритмы Instagram и TikTok любят ваш контент.",
+    "headline": "Контент, который работает",
+    "body": "Более двух лет создаю контент для бизнеса, локальных брендов и экспертов. Совмещаю сильную стратегию и безупречный дизайн.",
     "photo": "/images/veta-portrait.jpg",
-    "photoCaption": "Veta Sergeeva — SMM-специалист, Санкт-Петербург",
+    "photoCaption": "Veta Sergeeva — SMM-специалист, дизайнер, Санкт-Петербург",
     "highlights": [
-      "5+ лет в SMM",
-      "Работала с брендами в EU и СНГ",
-      "Snezhana-certified content strategist",
-      "Преподаю в онлайн-школе контент-мейкеров"
+      "Более 2-х лет в digital",
+      "Сотрудничаю с брендами в EU и СНГ",
+      "Провожу консультации для коллег и экспертов",
+      "Работаю  в разных нишах: от недвижимости до beauty",
+      "Формирую команду под задачи проекта"
     ],
     "stats": [
       {
-        "value": "120+",
+        "value": "10+",
         "label": "Проектов"
       },
       {
-        "value": "5M+",
-        "label": "Охвата"
+        "value": "5+",
+        "label": "Ниш"
       },
       {
-        "value": "48",
-        "label": "Клиентов"
+        "value": "15+",
+        "label": "Консультаций"
       }
     ]
   },
-  "services": {
-    "headline": "Services",
-    "subtitle": "От одного Reel до полного ведения соцсетей",
-    "items": [
+  "services": [
     {
       "number": "01",
       "title": "Reels Production",
@@ -113,9 +106,9 @@
         "Платное продвижение"
       ]
     }
-  ]},
+  ],
   "contact": {
-    "headline": "Contact",
+    "headline": "Давайте создадим что-то классное",
     "subline": "Напишите мне в Telegram или на почту — отвечаю в течение дня",
     "email": "hello@vetasergeeva.com",
     "telegram": "@vetasergeeva",
