@@ -1,72 +1,106 @@
 ---
-import { getCollection } from 'astro:content';
-import { getImage } from 'astro:assets';
-import ScatteredPortfolio from '@/components/ScatteredPortfolio.tsx';
-import Marquee from '@/components/Marquee.astro';
+import { getCollection } from "astro:content";
+import { getImage } from "astro:assets";
+import ScatteredPortfolio from "@/components/ScatteredPortfolio.tsx";
+import Marquee from "@/components/Marquee.astro";
 
-const works = await getCollection('portfolio');
+const works = await getCollection("portfolio");
 works.sort((a, b) => a.data.order - b.data.order);
 
 const workItems = await Promise.all(
-  works.map(async (w) => {
-    const cover = await getImage({ src: w.data.cover, width: 1400, quality: 82, format: 'webp' });
-    let gallerySrc: string[] = [];
-    if (w.data.gallery && w.data.gallery.length > 0) {
-      const optimized = await Promise.all(
-        w.data.gallery.map((img: any) => getImage({ src: img, width: 1800, quality: 85, format: 'webp' }))
-      );
-      gallerySrc = optimized.map((o) => o.src);
-    }
-    return {
-      slug: w.slug, title: w.data.title, client: w.data.client ?? '',
-      category: w.data.category, year: w.data.year,
-      coverSrc: cover.src, gallerySrc, description: w.data.description,
-      body: w.body ?? null,
-      tags: w.data.tags, order: w.data.order,
-    };
-  })
+    works.map(async (w) => {
+        const cover = await getImage({
+            src: w.data.cover,
+            width: 1400,
+            quality: 82,
+            format: "webp",
+        });
+        let gallerySrc: string[] = [];
+        if (w.data.gallery && w.data.gallery.length > 0) {
+            const optimized = await Promise.all(
+                w.data.gallery.map((img: any) =>
+                    getImage({
+                        src: img,
+                        width: 1800,
+                        quality: 85,
+                        format: "webp",
+                    }),
+                ),
+            );
+            gallerySrc = optimized.map((o) => o.src);
+        }
+        return {
+            slug: w.slug,
+            title: w.data.title,
+            client: w.data.client ?? "",
+            category: w.data.category,
+            year: w.data.year,
+            coverSrc: cover.src,
+            gallerySrc,
+            description: w.data.description,
+            body: w.body ?? null,
+            tags: w.data.tags,
+            order: w.data.order,
+        };
+    }),
 );
 ---
 
 <section id="work" class="relative py-24 md:py-40">
-  <div class="container-wide">
-
-    {/* Oversized section title */}
-    <div class="mb-4 md:mb-6 reveal-up overflow-hidden">
-      <div class="flex flex-col md:flex-row md:items-end gap-4 md:gap-10">
-        <h2 class="font-sans font-black uppercase leading-[0.88] tracking-tighter"
-            style="font-size: clamp(2.5rem, 11vw, 11rem)">
-          Selected<br class="md:hidden"/>
-          <span class="md:ml-0"> Work</span>
-        </h2>
-        <div class="flex md:flex-col gap-3 md:gap-1 md:pb-3 shrink-0">
-          <span class="text-xs font-mono uppercase tracking-widest text-ink-muted">2024 — 2025</span>
-          <span class="text-xs font-mono uppercase tracking-widest text-ink-muted">— 01</span>
+    <div class="container-wide">
+        {/* Oversized section title */}
+        <div class="mb-4 md:mb-6 reveal-up overflow-hidden">
+            <div class="flex flex-col md:flex-row md:items-end gap-4 md:gap-10">
+                <h2
+                    class="font-sans font-black uppercase leading-[0.88] tracking-tighter"
+                    style="font-size: clamp(2.5rem, 11vw, 11rem)"
+                >
+                    Selected<br class="md:hidden" />
+                    <span class="md:ml-0"> Work</span>
+                </h2>
+                <div class="flex md:flex-col gap-3 md:gap-1 md:pb-3 shrink-0">
+                    <span
+                        class="text-xs font-mono uppercase tracking-widest text-ink-muted"
+                        >2023 — NOW</span
+                    >
+                    <!-- <span class="text-xs font-mono uppercase tracking-widest text-ink-muted">— 01</span> -->
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  {/* Бегущая строка — на всю ширину, между заголовком и сеткой */}
-  <!--<Marquee />-->
+    {/* Бегущая строка — на всю ширину, между заголовком и сеткой */}
+    <!--<Marquee />-->
 
-  <div class="container-wide">
-    {/* Subtext */}
-    <p class="text-xs font-mono uppercase tracking-widest text-ink-muted mt-10 mb-16 md:mb-24 reveal-up max-w-xs" style="transition-delay:0.1s">
-      Небольшая выборка последних работ. Полное портфолио — по запросу.
-    </p>
+    <div class="container-wide">
+        {/* Subtext */}
+        <p
+            class="text-xs font-mono uppercase tracking-widest text-ink-muted mt-10 mb-16 md:mb-24 reveal-up max-w-xs"
+            style="transition-delay:0.1s"
+        >
+            Небольшая выборка последних работ. Полное портфолио — по запросу.
+        </p>
 
-    <ScatteredPortfolio works={workItems} client:visible />
+        <ScatteredPortfolio works={workItems} client:visible />
 
-    <div class="mt-20 md:mt-32 text-center reveal-up">
-      <a href="#contact" class="inline-flex items-center gap-6 group">
-        <span class="font-display italic text-3xl md:text-5xl">Хочу такой же</span>
-        <span class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-ink text-bg flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-      </a>
+        <div class="mt-20 md:mt-32 text-center reveal-up">
+            <a href="#contact" class="inline-flex items-center gap-6 group">
+                <span class="font-display italic text-3xl md:text-5xl"
+                    >Хочу такой же</span
+                >
+                <span
+                    class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-ink text-bg flex items-center justify-center group-hover:scale-110 transition-transform duration-500"
+                >
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path
+                            d="M4 10H16M16 10L10 4M16 10L10 16"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                </span>
+            </a>
+        </div>
     </div>
-  </div>
 </section>
