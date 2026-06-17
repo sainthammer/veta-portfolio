@@ -1,25 +1,25 @@
 {
   "hero": {
     "tagline": "Design · SMM · Content",
-    "intro": "Создаю контент, который работает на бизнес. Превращаю бренды в любимчиков аудитории.",
+    "intro": "Создаю контент, который работает на бизнес. Превращаю бренды в любимчиков аудитории, а подписчиков — в клиентов.",
     "showcasePhotos": [
       {
-        "src": "/images/hero-1.jpg",
+        "src": "/images/IMG_6351 (1).JPG",
         "alt": "alt",
         "caption": ""
       },
       {
-        "src": "/images/hero-2.jpg",
+        "src": "/images/IMG_6349 (1).JPG",
         "alt": "alt",
         "caption": ""
       },
       {
-        "src": "/images/hero-3.jpg",
+        "src": "/images/IMG_6357.JPG",
         "alt": "alt",
         "caption": ""
       },
       {
-        "src": "/images/hero-1.jpg",
+        "src": "/images/IMG_6348 (1).JPG",
         "alt": "alt",
         "caption": ""
       }
